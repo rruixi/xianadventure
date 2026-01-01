@@ -12,417 +12,424 @@
         }
 
         body {
-            font-family: '微软雅黑', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #eee;
             min-height: 100vh;
             padding: 20px;
         }
 
         .container {
-            background: rgba(20, 20, 40, 0.95);
-            border: 3px solid #667eea;
-            border-radius: 10px;
-            box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
-            max-width: 900px;
-            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(30, 30, 60, 0.9);
+            border-radius: 15px;
             padding: 30px;
-            color: #e0e0e0;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
         }
 
-        .header {
+        h1 {
             text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid #667eea;
-            padding-bottom: 15px;
-        }
-
-        .header h1 {
-            color: #64b5f6;
+            color: #ffd54f;
             font-size: 2.5em;
-            text-shadow: 0 0 10px rgba(100, 181, 246, 0.5);
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(255, 213, 79, 0.5);
         }
 
-        .game-section {
+        .game-screen {
             display: none;
         }
 
-        .game-section.active {
+        .game-screen.active {
             display: block;
         }
 
-        /* 角色选择页面 */
+        /* 开场屏幕 */
+        .story-intro {
+            text-align: center;
+            line-height: 2;
+            margin-bottom: 30px;
+        }
+
+        /* 角色选择 */
         .character-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            margin-bottom: 20px;
+            margin: 30px 0;
         }
 
         .character-card {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            border: 2px solid #667eea;
-            border-radius: 8px;
+            background: rgba(50, 50, 80, 0.8);
             padding: 20px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
         }
 
         .character-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.8);
-            border-color: #64b5f6;
+            border-color: #ffd54f;
+            box-shadow: 0 5px 20px rgba(255, 213, 79, 0.3);
         }
 
-        .character-card h3 {
-            color: #64b5f6;
-            margin-bottom: 10px;
+        .character-card.selected {
+            border-color: #4caf50;
+            background: rgba(76, 175, 80, 0.2);
+        }
+
+        .character-name {
             font-size: 1.3em;
+            color: #ffd54f;
+            margin-bottom: 10px;
         }
 
-        .character-card p {
+        .character-desc {
             font-size: 0.9em;
-            color: #b0bec5;
-            margin-bottom: 5px;
-            line-height: 1.6;
+            color: #bbb;
+            margin-bottom: 10px;
         }
 
-        /* 加点系统 */
-        .stat-system {
-            background: rgba(30, 60, 114, 0.5);
-            border: 1px solid #667eea;
-            border-radius: 8px;
+        .character-stats {
+            font-size: 0.85em;
+            color: #64b5f6;
+        }
+
+        /* 属性加点 */
+        .attribute-panel {
+            background: rgba(50, 50, 80, 0.6);
             padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
         }
 
-        .stat-item {
+        .attribute-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            margin: 15px 0;
             padding: 10px;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(30, 30, 50, 0.5);
             border-radius: 5px;
         }
 
-        .stat-label {
-            color: #64b5f6;
-            font-weight: bold;
-            min-width: 100px;
-        }
-
-        .stat-controls {
+        .attribute-controls {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
 
-        .stat-btn {
-            background: #667eea;
-            color: white;
+        .attr-btn {
+            width: 35px;
+            height: 35px;
             border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+            background: #64b5f6;
+            color: white;
+            font-size: 1.2em;
+            border-radius: 5px;
             cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
+            transition: all 0.2s;
         }
 
-        .stat-btn:hover {
-            background: #64b5f6;
+        .attr-btn:hover {
+            background: #42a5f5;
             transform: scale(1.1);
         }
 
-        .stat-value {
+        .attr-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+
+        .attr-value {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #ffd54f;
             min-width: 30px;
             text-align: center;
-            color: #ffd54f;
-            font-weight: bold;
         }
 
         .points-remaining {
-            color: #ffd54f;
-            font-weight: bold;
-            text-align: right;
-            margin-bottom: 15px;
+            text-align: center;
+            font-size: 1.3em;
+            color: #4caf50;
+            margin: 20px 0;
         }
 
         /* 游戏主界面 */
-        .game-info {
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(50, 50, 80, 0.6);
+            border-radius: 8px;
+            flex-wrap: wrap;
+        }
+
+        .character-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .current-location {
+            text-align: right;
+            color: #ffd54f;
+            font-weight: bold;
+        }
+
+        .status-bar {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        .info-box {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid #667eea;
-            border-radius: 5px;
-            padding: 12px;
+        .status-item {
+            background: rgba(50, 50, 80, 0.8);
+            padding: 15px;
+            border-radius: 8px;
             text-align: center;
         }
 
-        .info-label {
-            color: #b0bec5;
-            font-size: 0.85em;
-            margin-bottom: 5px;
+        .status-label {
+            font-size: 0.9em;
+            color: #bbb;
+            margin-bottom: 8px;
         }
 
-        .info-value {
-            color: #64b5f6;
-            font-weight: bold;
+        .status-value {
             font-size: 1.3em;
+            font-weight: bold;
         }
 
-        .health-bar, .hunger-bar, .thirst-bar {
-            background: #1a1a2e;
-            border: 1px solid #667eea;
-            border-radius: 3px;
-            height: 20px;
-            overflow: hidden;
-            margin-top: 5px;
+        .hp { color: #f44336; }
+        .hunger { color: #ff9800; }
+        .thirst { color: #2196f3; }
+        .attack { color: #e91e63; }
+        .defense { color: #9c27b0; }
+
+        /* 地点导航 */
+        .location-nav {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+            padding: 15px;
+            background: rgba(50, 50, 80, 0.6);
+            border-radius: 8px;
         }
 
-        .health-fill {
-            background: linear-gradient(90deg, #4caf50, #8bc34a);
-            height: 100%;
-            transition: width 0.3s ease;
+        .location-btn {
+            padding: 12px;
+            background: rgba(100, 181, 246, 0.3);
+            border: 2px solid #64b5f6;
+            color: #64b5f6;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
         }
 
-        .hunger-fill {
-            background: linear-gradient(90deg, #ff9800, #ffc107);
-            height: 100%;
-            transition: width 0.3s ease;
+        .location-btn:hover {
+            background: rgba(100, 181, 246, 0.6);
+            transform: translateY(-2px);
         }
 
-        .thirst-fill {
-            background: linear-gradient(90deg, #2196f3, #64b5f6);
-            height: 100%;
-            transition: width 0.3s ease;
+        .location-btn.active {
+            background: #64b5f6;
+            color: #1a1a2e;
         }
 
-        /* 故事文本 */
-        .story-text {
-            background: rgba(0, 0, 0, 0.3);
-            border-left: 3px solid #ffd54f;
-            border-radius: 5px;
-            padding: 20px;
-            margin-bottom: 20px;
-            color: #e0e0e0;
+        /* 游戏内容区 */
+        .game-content {
+            background: rgba(30, 30, 50, 0.7);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            min-height: 300px;
             line-height: 1.8;
-            font-size: 1.05em;
-            min-height: 150px;
+            max-height: 500px;
+            overflow-y: auto;
         }
 
-        /* 选项按钮 */
-        .options-container {
+        /* 按钮区 */
+        .actions {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
 
         .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: 2px solid #667eea;
-            padding: 15px 20px;
+            padding: 15px 25px;
+            font-size: 1.1em;
+            border: none;
             border-radius: 8px;
             cursor: pointer;
+            transition: all 0.3s;
             font-weight: bold;
-            font-size: 1em;
-            transition: all 0.3s ease;
-            text-align: center;
-            white-space: wrap;
         }
 
-        .btn:hover {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        .btn-primary {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #45a049;
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        .btn-danger {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #da190b;
+            transform: translateY(-2px);
+        }
+
+        .btn-info {
+            background: #2196f3;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: #0b7dda;
+            transform: translateY(-2px);
+        }
+
+        .btn-warning {
+            background: #ff9800;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background: #e68900;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #9c27b0;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #7b1fa2;
+            transform: translateY(-2px);
         }
 
         .btn:disabled {
-            opacity: 0.5;
+            background: #555;
             cursor: not-allowed;
             transform: none;
         }
 
-        .btn-danger {
-            background: linear-gradient(135deg, #f44336 0%, #e91e63 100%);
-            border-color: #f44336;
-        }
-
-        .btn-danger:hover {
-            background: linear-gradient(135deg, #e91e63 0%, #f44336 100%);
-            box-shadow: 0 5px 15px rgba(244, 67, 54, 0.5);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
-            border-color: #4caf50;
-        }
-
-        .btn-success:hover {
-            background: linear-gradient(135deg, #45a049 0%, #4caf50 100%);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.5);
-        }
-
-        /* 物品栏 */
+        /* 背包 */
         .inventory {
-            background: rgba(30, 60, 114, 0.5);
-            border: 1px solid #667eea;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-
-        .inventory-title {
-            color: #64b5f6;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .inventory-items {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 10px;
+            margin-top: 15px;
         }
 
         .item {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid #667eea;
+            background: rgba(50, 50, 80, 0.8);
+            padding: 12px;
             border-radius: 5px;
-            padding: 8px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9em;
+            transition: all 0.2s;
+            border: 2px solid transparent;
         }
 
         .item:hover {
-            background: rgba(102, 126, 234, 0.2);
             border-color: #64b5f6;
+            transform: scale(1.05);
         }
 
         .item-name {
-            color: #64b5f6;
             font-weight: bold;
+            margin-bottom: 5px;
         }
 
         .item-count {
             color: #ffd54f;
-            font-size: 0.8em;
+            font-size: 0.9em;
         }
 
-        /* 结局屏幕 */
-        .ending-screen {
-            text-align: center;
-            padding: 40px 20px;
+        /* 合成界面 */
+        .craft-recipes {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
         }
 
-        .ending-title {
-            color: #ffd54f;
-            font-size: 2.2em;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(255, 213, 79, 0.5);
-        }
-
-        .ending-content {
-            color: #e0e0e0;
-            font-size: 1.1em;
-            line-height: 1.8;
-            margin-bottom: 30px;
-        }
-
-        .ending-content.good {
-            color: #4caf50;
-        }
-
-        .ending-content.bad {
-            color: #f44336;
-        }
-
-        /* 对话框 */
-        .dialog-box {
-            background: rgba(30, 30, 50, 0.9);
-            border: 2px solid #ffd54f;
+        .recipe {
+            background: rgba(50, 50, 80, 0.6);
+            padding: 15px;
             border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .dialog-name {
+        .recipe-info {
+            flex: 1;
+        }
+
+        .recipe-name {
+            font-size: 1.1em;
             color: #ffd54f;
-            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .recipe-materials {
+            font-size: 0.9em;
+            color: #bbb;
+        }
+
+        /* 战斗界面 */
+        .battle-scene {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .enemy-info {
+            background: rgba(100, 30, 30, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .enemy-name {
+            font-size: 1.5em;
+            color: #f44336;
             margin-bottom: 10px;
         }
 
-        .dialog-text {
-            color: #e0e0e0;
-            line-height: 1.6;
-        }
-
-        /* 响应式设计 */
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-            }
-
-            .header h1 {
-                font-size: 1.8em;
-            }
-
-            .character-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .game-info {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .options-container {
-                grid-template-columns: 1fr;
-            }
-
-            .stat-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        .combat-log {
-            background: rgba(0, 0, 0, 0.3);
-            border-left: 3px solid #f44336;
-            border-radius: 5px;
+        .battle-log {
+            background: rgba(30, 30, 50, 0.8);
             padding: 15px;
-            margin-bottom: 20px;
-            font-size: 0.95em;
-            max-height: 200px;
+            border-radius: 8px;
+            margin: 20px 0;
+            max-height: 250px;
             overflow-y: auto;
-            color: #e0e0e0;
+            text-align: left;
         }
 
-        .combat-log-item {
-            margin-bottom: 8px;
+        .battle-log p {
+            margin: 8px 0;
             padding: 5px;
-            border-bottom: 1px solid rgba(244, 67, 54, 0.2);
-        }
-
-        .combat-log-item:last-child {
-            border-bottom: none;
+            border-left: 3px solid #64b5f6;
+            padding-left: 10px;
         }
 
         .damage {
@@ -433,1183 +440,1230 @@
             color: #4caf50;
         }
 
-        .buff {
+        .info {
             color: #64b5f6;
+        }
+
+        /* 结局画面 */
+        .ending {
+            text-align: center;
+            padding: 30px;
+            line-height: 2;
+        }
+
+        .ending h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .victory {
+            color: #4caf50;
+        }
+
+        .defeat {
+            color: #f44336;
+        }
+
+        /* 事件对话框 */
+        .event-dialog {
+            background: rgba(50, 50, 80, 0.95);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 4px solid #ffd54f;
+        }
+
+        .event-title {
+            font-size: 1.2em;
+            color: #ffd54f;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .event-choices {
+            display: grid;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .choice-btn {
+            padding: 10px 15px;
+            background: rgba(100, 181, 246, 0.3);
+            border: 1px solid #64b5f6;
+            color: #64b5f6;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .choice-btn:hover {
+            background: rgba(100, 181, 246, 0.6);
+            transform: translateX(5px);
+        }
+
+        /* 滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(30, 30, 50, 0.5);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #64b5f6;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #42a5f5;
+        }
+
+        .npc-dialog {
+            background: rgba(76, 175, 80, 0.1);
+            padding: 15px;
+            border-left: 3px solid #4caf50;
+            margin: 10px 0;
+            border-radius: 5px;
+            color: #a5d6a7;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>仙家军求生记 </h1>
-        </div>
+        <h1>⚔️ 仙家军求生记 ⚔️</h1>
 
-        <!-- 开始页面 -->
-        <div id="startSection" class="game-section active">
-            <div style="text-align: center; margin-bottom: 30px;">
-                <p style="color: #b0bec5; font-size: 1.1em; line-height: 1.8; margin-bottom: 20px;">
+        <!-- 开场界面 -->
+        <div id="intro-screen" class="game-screen active">
+            <div class="story-intro">
+                <p style="margin-bottom: 20px; font-size: 1.1em;">
                     曾经，仙庭的家园繁荣昌盛。但在一个月黑风高的夜晚，<br>
                     皱皮大王率领妖魔大军摧毁了仙家军的一切。<br>
+                    <span style="color: #ffd54f;">无数同伴丧生，家园被夷为平地...</span><br>
+                    <br>
+                    <span style="color: #f44336;">你是唯一的幸存者。</span><br>
                     <span style="color: #ffd54f;">家园已毁，复仇之念燃烧在心间...</span>
                 </p>
                 <p style="color: #64b5f6; font-size: 0.95em;">选择你的角色，踏上复仇之旅</p>
             </div>
 
-            <div class="character-grid">
-                <div class="character-card" onclick="selectCharacter('emperor')">
-                    <h3>👑 诸天未来仙帝</h3>
-                    <p><strong>天生血脉强大</strong></p>
-                    <p style="color: #64b5f6;">体质：+15%</p>
-                    <p style="color: #64b5f6;">攻击：+10%</p>
-                    <p style="color: #b0bec5; margin-top: 10px; font-size: 0.85em;">
-                        曾经仙庭最有天赋的修士，虽然还未突破仙帝境界，但已有仙帝之资。
-                    </p>
-                </div>
+            <div class="character-grid" id="character-list">
+                <!-- 角色卡片将由JS生成 -->
+            </div>
 
-                <div class="character-card" onclick="selectCharacter('young')">
-                    <h3>🌟 河北小杨</h3>
-                    <p><strong>敏捷且幸运</strong></p>
-                    <p style="color: #64b5f6;">敏捷：+20%</p>
-                    <p style="color: #64b5f6;">幸运：+25%</p>
-                    <p style="color: #b0bec5; margin-top: 10px; font-size: 0.85em;">
-                        灵敏聪慧，虽然修为最浅，但机智过人，常能化险为夷。
-                    </p>
-                </div>
-
-                <div class="character-card" onclick="selectCharacter('liu')">
-                    <h3>⚡ 刘世鹏</h3>
-                    <p><strong>力量与意志</strong></p>
-                    <p style="color: #64b5f6;">力量：+20%</p>
-                    <p style="color: #64b5f6;">意志：+15%</p>
-                    <p style="color: #b0bec5; margin-top: 10px; font-size: 0.85em;">
-                        铁血战士，以其顽强意志和惊人的力量著称，曾独自对抗百妖。
-                    </p>
-                </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-primary" onclick="startAttributeAllocation()" id="select-char-btn" disabled>
+                    确认选择
+                </button>
             </div>
         </div>
 
-        <!-- 加点页面 -->
-        <div id="allocateSection" class="game-section">
-            <h2 style="color: #64b5f6; margin-bottom: 20px; text-align: center;">
-                分配属性点
-            </h2>
-            
+        <!-- 属性加点界面 -->
+        <div id="attribute-screen" class="game-screen">
+            <h2 style="text-align: center; color: #64b5f6; margin-bottom: 20px;">属性加点</h2>
             <div class="points-remaining">
-                剩余点数: <span id="remainingPoints">10</span>
+                剩余点数: <span id="points-remaining">10</span>
             </div>
-
-            <div class="stat-system">
-                <div class="stat-item">
-                    <div class="stat-label">体质 (HP)</div>
-                    <div class="stat-controls">
-                        <button class="stat-btn" onclick="decreaseStat('constitution')">-</button>
-                        <div class="stat-value" id="constitution-value">0</div>
-                        <button class="stat-btn" onclick="increaseStat('constitution')">+</button>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-label">力量 (攻击)</div>
-                    <div class="stat-controls">
-                        <button class="stat-btn" onclick="decreaseStat('strength')">-</button>
-                        <div class="stat-value" id="strength-value">0</div>
-                        <button class="stat-btn" onclick="increaseStat('strength')">+</button>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-label">敏捷 (防御/躲避)</div>
-                    <div class="stat-controls">
-                        <button class="stat-btn" onclick="decreaseStat('agility')">-</button>
-                        <div class="stat-value" id="agility-value">0</div>
-                        <button class="stat-btn" onclick="increaseStat('agility')">+</button>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-label">智慧 (治疗/恢复)</div>
-                    <div class="stat-controls">
-                        <button class="stat-btn" onclick="decreaseStat('wisdom')">-</button>
-                        <div class="stat-value" id="wisdom-value">0</div>
-                        <button class="stat-btn" onclick="increaseStat('wisdom')">+</button>
-                    </div>
-                </div>
-
-                <div class="stat-item">
-                    <div class="stat-label">意志 (抗性/恢复速度)</div>
-                    <div class="stat-controls">
-                        <button class="stat-btn" onclick="decreaseStat('willpower')">-</button>
-                        <div class="stat-value" id="willpower-value">0</div>
-                        <button class="stat-btn" onclick="increaseStat('willpower')">+</button>
-                    </div>
-                </div>
+            <div class="attribute-panel" id="attribute-panel">
+                <!-- 属性加点将由JS生成 -->
             </div>
-
-            <p style="color: #b0bec5; text-align: center; margin-bottom: 20px; font-size: 0.9em;">
-                💡 提示：建议根据角色特性加点，以发挥各自优势
-            </p>
-
-            <div class="options-container">
-                <button class="btn" onclick="goBack()">返回选择角色</button>
-                <button class="btn btn-success" onclick="startGame()">开始冒险</button>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-primary" onclick="startGame()" id="start-game-btn" disabled>
+                    开始游戏
+                </button>
             </div>
         </div>
 
-        <!-- 游戏主界面 -->
-        <div id="gameSection" class="game-section">
-            <!-- 角色信息 -->
-            <div class="game-info">
-                <div class="info-box">
-                    <div class="info-label">生命值</div>
-                    <div class="info-value" id="health-display">100/100</div>
-                    <div class="health-bar">
-                        <div class="health-fill" id="health-bar" style="width: 100%"></div>
+        <!-- 主游戏界面 -->
+        <div id="game-screen" class="game-screen">
+            <!-- 游戏头部 -->
+            <div class="game-header">
+                <div class="character-info">
+                    <div>
+                        <div style="color: #bbb; font-size: 0.9em;">角色</div>
+                        <div style="color: #ffd54f; font-weight: bold;" id="character-name">诸天未来仙帝</div>
                     </div>
                 </div>
-
-                <div class="info-box">
-                    <div class="info-label">饱食度</div>
-                    <div class="info-value" id="hunger-display">100/100</div>
-                    <div class="hunger-bar">
-                        <div class="hunger-fill" id="hunger-bar" style="width: 100%"></div>
-                    </div>
-                </div>
-
-                <div class="info-box">
-                    <div class="info-label">渴望度</div>
-                    <div class="info-value" id="thirst-display">100/100</div>
-                    <div class="thirst-bar">
-                        <div class="thirst-fill" id="thirst-bar" style="width: 100%"></div>
-                    </div>
-                </div>
-
-                <div class="info-box">
-                    <div class="info-label">日期</div>
-                    <div class="info-value" id="day-display">第 1 天</div>
-                </div>
-
-                <div class="info-box">
-                    <div class="info-label">位置</div>
-                    <div class="info-value" id="location-display">废墟</div>
-                </div>
-
-                <div class="info-box">
-                    <div class="info-label">状态</div>
-                    <div class="info-value" id="status-display">正常</div>
+                <div class="current-location">
+                    <div style="color: #bbb; font-size: 0.9em;">当前位置</div>
+                    <div id="location-display">✨ 仙家军遗迹</div>
                 </div>
             </div>
 
-            <!-- 故事文本 -->
-            <div class="story-text" id="storyText">
-                故事将在这里显示...
+            <!-- 状态栏 -->
+            <div class="status-bar" id="status-bar">
+                <div class="status-item">
+                    <div class="status-label">生命值</div>
+                    <div class="status-value hp" id="hp-display">100/100</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">饱食度</div>
+                    <div class="status-value hunger" id="hunger-display">100/100</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">饥渴度</div>
+                    <div class="status-value thirst" id="thirst-display">100/100</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">攻击力</div>
+                    <div class="status-value attack" id="attack-display">10</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">防御力</div>
+                    <div class="status-value defense" id="defense-display">5</div>
+                </div>
             </div>
 
-            <!-- 战斗日志 -->
-            <div class="combat-log" id="combatLog" style="display: none;">
-                <div style="color: #64b5f6; font-weight: bold; margin-bottom: 10px;">⚔️ 战斗日志</div>
-                <div id="combatLogContent"></div>
+            <!-- 地点导航 -->
+            <div style="margin-bottom: 15px;">
+                <div style="color: #bbb; margin-bottom: 8px;">🗺️ 快速传送</div>
+                <div class="location-nav" id="location-nav">
+                    <!-- 地点按钮由JS生成 -->
+                </div>
             </div>
 
-            <!-- 物品栏 -->
-            <div class="inventory" id="inventoryContainer" style="display: none;">
-                <div class="inventory-title">📦 物品栏</div>
-                <div class="inventory-items" id="inventoryItems"></div>
+            <!-- 游戏内容 -->
+            <div class="game-content" id="game-content">
+                <p>你醒来时，发现自己身处仙家军遗迹中。断裂的宫殿、焦黑的土地、弥漫的灵气混乱...</p>
+                <p style="color: #ffd54f; margin-top: 15px;">你需要收集资源、制作武器，逐步变强，最终找到皱皮大王复仇！</p>
             </div>
 
-            <!-- 选项 -->
-            <div class="options-container" id="optionsContainer">
-                <!-- 选项将动态生成 -->
+            <!-- 操作按钮 -->
+            <div class="actions" id="main-actions">
+                <button class="btn btn-info" onclick="explore()">🔍 探索当前地点</button>
+                <button class="btn btn-warning" onclick="showInventory()">🎒 背包</button>
+                <button class="btn btn-info" onclick="showCraft()">🔨 合成</button>
+                <button class="btn btn-primary" onclick="rest()">😴 休息</button>
+                <button class="btn btn-danger" onclick="findBoss()">⚔️ 寻找皱皮大王</button>
             </div>
         </div>
 
-        <!-- 结局页面 -->
-        <div id="endingSection" class="game-section">
-            <div class="ending-screen">
-                <div class="ending-title" id="endingTitle">游戏结束</div>
-                <div class="ending-content" id="endingContent">
-                    故事在这里结束...
+        <!-- 背包界面 -->
+        <div id="inventory-screen" class="game-screen">
+            <h2 style="color: #64b5f6; margin-bottom: 20px;">📦 背包</h2>
+            <div class="inventory" id="inventory-list">
+                <!-- 物品将由JS生成 -->
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-info" onclick="backToGame()">返回</button>
+            </div>
+        </div>
+
+        <!-- 合成界面 -->
+        <div id="craft-screen" class="game-screen">
+            <h2 style="color: #64b5f6; margin-bottom: 20px;">🔨 合成台</h2>
+            <div class="craft-recipes" id="craft-recipes">
+                <!-- 配方将由JS生成 -->
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="btn btn-info" onclick="backToGame()">返回</button>
+            </div>
+        </div>
+
+        <!-- 战斗界面 -->
+        <div id="battle-screen" class="game-screen">
+            <div class="battle-scene">
+                <div class="enemy-info">
+                    <div class="enemy-name" id="enemy-name">敌人</div>
+                    <div class="status-value hp" id="enemy-hp">100/100</div>
                 </div>
-                <button class="btn" onclick="location.reload()">重新开始</button>
+                <div class="battle-log" id="battle-log">
+                    <!-- 战斗日志 -->
+                </div>
+                <div class="actions">
+                    <button class="btn btn-danger" onclick="attack()">⚔️ 攻击</button>
+                    <button class="btn btn-primary" onclick="useHealItem()">💊 使用治疗</button>
+                    <button class="btn btn-warning" onclick="flee()">🏃 逃跑</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 结局界面 -->
+        <div id="ending-screen" class="game-screen">
+            <div class="ending" id="ending-content">
+                <!-- 结局内容由JS生成 -->
             </div>
         </div>
     </div>
 
     <script>
-        // 游戏状态
-        const gameState = {
-            currentSection: 'start',
-            character: null,
-            stats: {
-                constitution: 0,
-                strength: 0,
-                agility: 0,
-                wisdom: 0,
-                willpower: 0
-            },
-            baseStats: {
-                emperor: { health: 120, attack: 15, defense: 10, luck: 5 },
-                young: { health: 90, attack: 12, defense: 8, luck: 20 },
-                liu: { health: 130, attack: 18, defense: 12, luck: 5 }
-            },
-            health: 100,
-            maxHealth: 100,
-            hunger: 100,
-            thirst: 100,
-            day: 1,
-            location: '废墟',
-            inventory: {},
-            combatLog: [],
-            events: 0,
-            enemyDefeated: 0,
-            wrinkledKingHealth: 150,
-            wrinkledKingMaxHealth: 150,
-            inCombat: false,
-            currentEnemy: null,
-            story: []
-        };
-
-        const characterInfo = {
-            emperor: {
+        // 游戏数据
+        const characters = [
+            {
+                id: 'xiandi',
                 name: '诸天未来仙帝',
-                description: '曾经仙庭最有天赋的修士',
-                bonus: { healthBonus: 0.15, attackBonus: 0.10 }
+                desc: '天赋异禀，修炼速度极快',
+                baseStats: { hp: 120, attack: 15, defense: 8 },
+                ability: '战斗时攻击力+20%'
             },
-            young: {
+            {
+                id: 'yangge',
                 name: '河北小杨',
-                description: '灵敏聪慧，机智过人',
-                bonus: { agilityBonus: 0.20, luckBonus: 0.25 }
+                desc: '身手敏捷，擅长探索',
+                baseStats: { hp: 100, attack: 12, defense: 10 },
+                ability: '探索时额外获得资源'
             },
-            liu: {
+            {
+                id: 'liushipeng',
                 name: '刘世鹏',
-                description: '铁血战士，意志顽强',
-                bonus: { strengthBonus: 0.20, willpowerBonus: 0.15 }
+                desc: '力大无穷，防御惊人',
+                baseStats: { hp: 150, attack: 10, defense: 15 },
+                ability: '受到伤害减少30%'
+            },
+            {
+                id: 'chenyuxin',
+                name: '陈雨欣',
+                desc: '精通医术，恢复能力强',
+                baseStats: { hp: 90, attack: 8, defense: 7 },
+                ability: '使用恢复物品效果+50%'
+            },
+            {
+                id: 'guilao',
+                name: '鬼姥',
+                desc: '诡异莫测，致命一击',
+                baseStats: { hp: 80, attack: 20, defense: 5 },
+                ability: '30%概率造成双倍伤害'
+            },
+            {
+                id: 'baihu',
+                name: '白狐',
+                desc: '灵巧狡黠，闪避高超',
+                baseStats: { hp: 95, attack: 13, defense: 8 },
+                ability: '25%概率闪避攻击'
             }
+        ];
+
+        const locations = [
+            {
+                id: 'ruins',
+                name: '✨ 仙家军遗迹',
+                description: '曾经的家园现在只剩断壁残垣。<br>到处是被烧焦的痕迹，空气中弥漫着悲伤的灵气。<br>这里可能还有一些有用的资源...',
+                encounters: ['野狼', '废墟幽灵'],
+                resources: ['herb', 'wood', 'stone'],
+                story: '在废墟中，你发现了一块带有仙家军标记的碎片。<br>这勾起了你对那些失去的同伴的回忆...'
+            },
+            {
+                id: 'forest',
+                name: '🌲 诡异树林',
+                description: '这片树林被妖气污染，树木扭曲变形。<br>可以听到奇异的声音在林间回荡。<br>这里可能隐藏着变异的妖兽...',
+                encounters: ['变异野狼', '妖树精灵'],
+                resources: ['wood', 'herb', 'meat'],
+                story: '深入树林深处，你发现了一个被遗弃的营地。<br>这是仙家军撤退时留下的。里面还有一些食物...'
+            },
+            {
+                id: 'company',
+                name: '🏢 恶魔公司',
+                description: '一座诡异的现代建筑矗立在荒野中。<br>这是皱皮大王的据点，充满了邪恶的气息。<br>这里汇集了许多强大的怪物...',
+                encounters: ['公司员工', '妖怪主管', '邪灵保安'],
+                resources: ['iron', 'stone', 'potion'],
+                story: '你潜入了恶魔公司。在档案室中发现了皱皮大王的计划。<br>它计划进一步扩张其势力范围，摧毁更多的势力...'
+            },
+            {
+                id: 'cave',
+                name: '⛰️ 深渊洞窟',
+                description: '一个深不见底的黑暗洞窟。<br>里面传来低沉的吼声和奇异的气味。<br>据说皱皮大王的一些手下在这里修行...',
+                encounters: ['洞窟蜘蛛', '地穴恶魔'],
+                resources: ['iron', 'herb', 'stone'],
+                story: '在洞窟深处，你找到了一个被困的生灵。<br>它告诉你皱皮大王的弱点信息...'
+            },
+            {
+                id: 'temple',
+                name: '🏯 废弃神庙',
+                description: '一座古老的神庙被岁月侵蚀。<br>这里曾经是人类求神的地方，现在沦为了妖怪的巢穴。<br>但也许还能找到一些珍贵的遗物...',
+                encounters: ['神庙守卫', '堕落僧侣'],
+                resources: ['potion', 'herb', 'wood'],
+                story: '在神庙的地下室，你发现了一本记载仙家军历史的古籍。<br>其中提到了一个能够削弱皱皮大王的方法...'
+            },
+            {
+                id: 'fortress',
+                name: '👑 永夜堡垒',
+                description: '皱皮大王的最终据点！<br>这座堡垒充满了绝望的黑暗力量。<br>只有做好充足准备的人才能在这里活下来...',
+                encounters: ['皱皮大王'],
+                resources: [],
+                story: '这就是复仇的终点。在这里，你将面对你最强大的敌人...'
+            }
+        ];
+
+        const items = {
+            food: { name: '食物', hunger: 30, thirst: 0 },
+            water: { name: '清水', hunger: 0, thirst: 40 },
+            meat: { name: '烤肉', hunger: 50, thirst: -10 },
+            herb: { name: '草药', hp: 30 },
+            potion: { name: '治疗药水', hp: 60 },
+            wood: { name: '木材', craftMaterial: true },
+            stone: { name: '石头', craftMaterial: true },
+            iron: { name: '铁矿', craftMaterial: true },
+            soul_fragment: { name: '灵魂碎片', special: true, description: '皱皮大王的力量来源之一' }
         };
 
-        // UI 更新函数
-        function showSection(sectionId) {
-            document.querySelectorAll('.game-section').forEach(el => el.classList.remove('active'));
-            document.getElementById(sectionId).classList.add('active');
-            gameState.currentSection = sectionId;
-        }
-
-        // 角色选择
-        function selectCharacter(character) {
-            gameState.character = character;
-            showSection('allocateSection');
-            updatePointsDisplay();
-        }
-
-        // 属性点管理
-        function increaseStat(stat) {
-            if (parseInt(document.getElementById('remainingPoints').textContent) > 0) {
-                gameState.stats[stat]++;
-                updatePointsDisplay();
+        const recipes = [
+            {
+                name: '木棍',
+                materials: { wood: 2 },
+                result: { attack: 5, defense: 0 },
+                desc: '简易武器，增加5点攻击'
+            },
+            {
+                name: '石斧',
+                materials: { wood: 2, stone: 3 },
+                result: { attack: 12, defense: 0 },
+                desc: '坚固武器，增加12点攻击'
+            },
+            {
+                name: '铁剑',
+                materials: { wood: 1, iron: 5 },
+                result: { attack: 25, defense: 0 },
+                desc: '锋利武器，增加25点攻击'
+            },
+            {
+                name: '木盾',
+                materials: { wood: 4 },
+                result: { attack: 0, defense: 8 },
+                desc: '防护装备，增加8点防御'
+            },
+            {
+                name: '铁甲',
+                materials: { iron: 8, stone: 3 },
+                result: { attack: 0, defense: 20 },
+                desc: '坚固护甲，增加20点防御'
+            },
+            {
+                name: '治疗药水',
+                materials: { herb: 3, water: 1 },
+                result: { item: 'potion' },
+                desc: '恢复60点生命值'
+            },
+            {
+                name: '神圣之剑',
+                materials: { iron: 10, soul_fragment: 2 },
+                result: { attack: 40, defense: 0 },
+                desc: '传奇武器，能对皱皮大王造成双倍伤害'
             }
-        }
+        ];
 
-        function decreaseStat(stat) {
-            if (gameState.stats[stat] > 0) {
-                gameState.stats[stat]--;
-                updatePointsDisplay();
-            }
-        }
+        const enemies = {
+            '野狼': { hp: 40, attack: 8, defense: 3, reward: ['food', 'wood'], location: 'ruins' },
+            '变异野狼': { hp: 60, attack: 12, defense: 5, reward: ['meat', 'wood', 'herb'], location: 'forest' },
+            '妖树精灵': { hp: 70, attack: 10, defense: 8, reward: ['herb', 'potion'], location: 'forest' },
+            '废墟幽灵': { hp: 50, attack: 14, defense: 4, reward: ['herb', 'stone'], location: 'ruins' },
+            '公司员工': { hp: 60, attack: 12, defense: 6, reward: ['iron', 'stone', 'potion'], location: 'company' },
+            '妖怪主管': { hp: 100, attack: 18, defense: 10, reward: ['iron', 'soul_fragment'], location: 'company' },
+            '邪灵保安': { hp: 80, attack: 15, defense: 8, reward: ['stone', 'potion'], location: 'company' },
+            '洞窟蜘蛛': { hp: 75, attack: 16, defense: 6, reward: ['iron', 'herb'], location: 'cave' },
+            '地穴恶魔': { hp: 120, attack: 20, defense: 12, reward: ['iron', 'soul_fragment', 'potion'], location: 'cave' },
+            '神庙守卫': { hp: 90, attack: 17, defense: 10, reward: ['potion', 'herb', 'soul_fragment'], location: 'temple' },
+            '堕落僧侣': { hp: 85, attack: 14, defense: 9, reward: ['herb', 'potion'], location: 'temple' }
+        };
 
-        function updatePointsDisplay() {
-            const total = Object.values(gameState.stats).reduce((a, b) => a + b, 0);
-            const remaining = 10 - total;
-            document.getElementById('remainingPoints').textContent = remaining;
+        const bossEnemy = {
+            name: '皱皮大王',
+            hp: 500,
+            maxHp: 500,
+            attack: 35,
+            defense: 25,
+            specialAttack: true
+        };
 
-            for (let stat in gameState.stats) {
-                document.getElementById(`${stat}-value`).textContent = gameState.stats[stat];
-            }
-        }
-
-        function goBack() {
-            gameState.stats = {
-                constitution: 0,
-                strength: 0,
-                agility: 0,
-                wisdom: 0,
-                willpower: 0
-            };
-            showSection('startSection');
-        }
-
-        // 游戏初始化
-        function startGame() {
-            // 计算最终属性
-            const base = gameState.baseStats[gameState.character];
-            const charBonus = characterInfo[gameState.character].bonus;
-
-            gameState.maxHealth = base.health + (gameState.stats.constitution * 8);
-            if (charBonus.healthBonus) {
-                gameState.maxHealth = Math.floor(gameState.maxHealth * (1 + charBonus.healthBonus));
-            }
-            gameState.health = gameState.maxHealth;
-
-            gameState.attack = base.attack + (gameState.stats.strength * 2);
-            if (charBonus.strengthBonus) {
-                gameState.attack = Math.floor(gameState.attack * (1 + charBonus.strengthBonus));
-            }
-
-            gameState.defense = base.defense + (gameState.stats.agility * 1.5);
-            if (charBonus.agilityBonus) {
-                gameState.defense = Math.floor(gameState.defense * (1 + charBonus.agilityBonus));
-            }
-
-            gameState.healing = base.attack + (gameState.stats.wisdom * 1.5);
-            gameState.resistance = gameState.stats.willpower * 2;
-            gameState.luck = base.luck + gameState.stats.agility;
-            if (charBonus.luckBonus) {
-                gameState.luck = Math.floor(gameState.luck * (1 + charBonus.luckBonus));
-            }
-
-            gameState.inventory = {
-                '木材': 5,
-                '清水': 3,
-                '干粮': 2,
-                '草药': 1
-            };
-
-            showSection('gameSection');
-            initializeGame();
-        }
-
-        function initializeGame() {
-            gameState.day = 1;
-            gameState.location = '仙家军废墟';
-            gameState.story = [];
-            updateUI();
-            showStory1();
-        }
-
-        // 故事事件
-        function showStory1() {
-            const storyText = `
-            <strong>第一天 - 苏醒</strong><br><br>
-            你从废墟中醒来，整个仙庭被摧毁了。烟火弥漫，满目疮痍。<br>
-            那头凶残的皱皮大王和它的妖魔军团已经离开了，但留下了绝望和死亡。<br><br>
-            你咬紧牙关，握紧拳头。无论如何，你必须活下去，并找到皱皮大王复仇！<br>
-            周围一片狼藉，你需要收集生存所需的物资...
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('🔍 收集物资', () => {
-                gameState.day++;
-                gameState.hunger -= 10;
-                gameState.thirst -= 10;
-                const found = Math.floor(Math.random() * 3);
-                if (found === 0) {
-                    gameState.inventory['木材'] = (gameState.inventory['木材'] || 0) + 3;
-                    showOption2A();
-                } else if (found === 1) {
-                    gameState.inventory['清水'] = (gameState.inventory['清水'] || 0) + 2;
-                    showOption2B();
-                } else {
-                    gameState.inventory['干粮'] = (gameState.inventory['干粮'] || 0) + 2;
-                    showOption2C();
+        // 游戏状态
+        let gameState = {
+            selectedCharacter: null,
+            currentLocation: 'ruins',
+            player: {
+                name: '',
+                hp: 100,
+                maxHp: 100,
+                hunger: 100,
+                maxHunger: 100,
+                thirst: 100,
+                maxThirst: 100,
+                baseAttack: 10,
+                baseDefense: 5,
+                bonusAttack: 0,
+                bonusDefense: 0,
+                ability: '',
+                attributes: {
+                    strength: 0,
+                    vitality: 0,
+                    endurance: 0,
+                    agility: 0
                 }
-            });
-            addOption('🏃 前往南边山林', () => {
-                gameState.day++;
-                gameState.location = '南边山林';
-                showStory3();
-            });
-            addOption('⚰️ 探索遗迹', () => {
-                gameState.day++;
-                showStory4();
-            });
-        }
-
-        function showOption2A() {
-            const storyText = `
-            <strong>第二天 - 收获</strong><br><br>
-            你在废墟中仔细搜寻，找到了一些保存完好的木材。<br>
-            这些木材是制造工具和武器的好材料。
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('⚒️ 制造木棍', () => {
-                if (gameState.inventory['木材'] >= 2) {
-                    gameState.inventory['木材'] -= 2;
-                    gameState.inventory['木棍'] = (gameState.inventory['木棍'] || 0) + 1;
-                    updateUI();
-                    showMessage('制造成功！你现在拥有一根坚固的木棍。', 'buff');
-                    setTimeout(showExplore1, 1500);
-                } else {
-                    showMessage('木材不足！', 'damage');
-                }
-            });
-            addOption('📍 继续前进', () => showExplore1());
-        }
-
-        function showOption2B() {
-            const storyText = `
-            <strong>第二天 - 甘霖</strong><br><br>
-            你找到了一个清水泉眼，这是沙漠中的绿洲。<br>
-            你收集了清水，这将大大缓解你的渴望。
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('💧 喝水恢复', () => {
-                gameState.thirst = 100;
-                gameState.inventory['清水']--;
-                updateUI();
-                showMessage('你感到清爽无比！', 'heal');
-                setTimeout(showExplore1, 1500);
-            });
-            addOption('📍 继续前进', () => showExplore1());
-        }
-
-        function showOption2C() {
-            const storyText = `
-            <strong>第二天 - 干粮</strong><br><br>
-            你在废墟附近找到了一些保存完好的干粮。<br>
-            虽然味道一般，但能让你活下去。
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('🍖 进食补充体力', () => {
-                gameState.hunger = 100;
-                gameState.inventory['干粮']--;
-                updateUI();
-                showMessage('你补充了能量！', 'heal');
-                setTimeout(showExplore1, 1500);
-            });
-            addOption('📍 继续前进', () => showExplore1());
-        }
-
-        function showStory3() {
-            const storyText = `
-            <strong>第三天 - 山林探险</strong><br><br>
-            南边山林覆盖了整个地区。你踏入这片幽深的森林，<br>
-            阳光透过树叶洒落下来，形成斑驳的光影。<br>
-            这里生存着各种野生动物，也可能隐藏着危险...
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('🐺 遭遇野兽', () => {
-                gameState.inCombat = true;
-                gameState.currentEnemy = {
-                    name: '凶恶野狼',
-                    health: 30,
-                    maxHealth: 30,
-                    attack: 8,
-                    defense: 3,
-                    experience: 50,
-                    loot: { '狼皮': 1, '狼牙': 1 }
-                };
-                startCombat();
-            });
-            addOption('🌲 安全地采集', () => {
-                gameState.inventory['草药'] = (gameState.inventory['草药'] || 0) + 3;
-                showStory5A();
-            });
-            addOption('🔦 探索山洞', () => {
-                gameState.day++;
-                showCaveeExplore();
-            });
-        }
-
-        function showStory5A() {
-            const storyText = `
-            <strong>第四天 - 药草收获</strong><br><br>
-            山林中生长着许多珍贵的药草。你小心地采集，<br>
-            这些草药可以用来制造治疗药水。
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('⚗️ 制造治疗药水', () => {
-                if (gameState.inventory['草药'] >= 2) {
-                    gameState.inventory['草药'] -= 2;
-                    gameState.inventory['治疗药水'] = (gameState.inventory['治疗药水'] || 0) + 1;
-                    updateUI();
-                    showMessage('制造成功！你得到了治疗药水。', 'buff');
-                    setTimeout(() => showMiddleStory(), 1500);
-                } else {
-                    showMessage('草药不足！', 'damage');
-                }
-            });
-            addOption('🗺️ 继续探索', () => showMiddleStory());
-        }
-
-        function showStory4() {
-            const storyText = `
-            <strong>第三天 - 遗迹探索</strong><br><br>
-            你深入仙庭的内部遗迹，寻找任何有价值的东西。<br>
-            突然，一个半崩塌的石屋出现在眼前。
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('🏠 进入石屋', () => {
-                if (Math.random() > 0.5) {
-                    gameState.inventory['古老手卷'] = (gameState.inventory['古老手卷'] || 0) + 1;
-                    showStory4A();
-                } else {
-                    showStory4B();
-                }
-            });
-            addOption('🚶 绕过遗迹', () => showStory3());
-        }
-
-        function showStory4A() {
-            const storyText = `
-            <strong>幸运发现</strong><br><br>
-            在一个破损的木箱里，你找到了一卷古老的手卷。<br>
-            这可能是一份武功秘籍或者重要信息...
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('📖 阅读手卷', () => {
-                showMessage('你获得了关键信息：皱皮大王住在北方的妖魔堡垒！', 'buff');
-                setTimeout(showMiddleStory, 1500);
-            });
-        }
-
-        function showStory4B() {
-            const storyText = `
-            <strong>危险遭遇</strong><br><br>
-            石屋内突然冲出一只受伤的妖怪！<br>
-            这是一只被遗弃的小妖，但它仍然具有危险性。
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('⚔️ 战斗', () => {
-                gameState.inCombat = true;
-                gameState.currentEnemy = {
-                    name: '残废妖怪',
-                    health: 25,
-                    maxHealth: 25,
-                    attack: 6,
-                    defense: 2,
-                    experience: 30,
-                    loot: { '妖晶': 1 }
-                };
-                startCombat();
-            });
-            addOption('🏃 逃离', () => {
-                gameState.hunger -= 5;
-                gameState.thirst -= 5;
-                showMiddleStory();
-            });
-        }
-
-        function showCaveeExplore() {
-            const storyText = `
-            <strong>第四天 - 山洞秘密</strong><br><br>
-            山洞内黑暗深邃，你点燃了一根火把。<br>
-            越往深处走，你感觉到一股奇异的能量...
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            if (Math.random() > 0.4) {
-                addOption('💎 发现宝藏', () => {
-                    gameState.inventory['灵石'] = (gameState.inventory['灵石'] || 0) + 2;
-                    showMessage('你发现了闪闪发光的灵石！', 'buff');
-                    setTimeout(showMiddleStory, 1500);
-                });
-            }
-            addOption('👹 遭遇怪物', () => {
-                gameState.inCombat = true;
-                gameState.currentEnemy = {
-                    name: '洞穴怪物',
-                    health: 40,
-                    maxHealth: 40,
-                    attack: 10,
-                    defense: 4,
-                    experience: 80,
-                    loot: { '怪物核心': 1, '金币': 20 }
-                };
-                startCombat();
-            });
-            addOption('🚶 退出山洞', () => showMiddleStory());
-        }
-
-        function showMiddleStory() {
-            gameState.day = 5;
-            const storyText = `
-            <strong>第五天 - 黑暗阴云笼罩</strong><br><br>
-            几天的探索让你收集到了不少物资，你也在逐渐了解这个世界的危险。<br>
-            从各种迹象来看，皱皮大王的势力正在扩张。<br>
-            你看到了天空中的黑暗云层，似乎预示着一场大风暴即将到来。<br><br>
-            <strong style="color: #ffd54f;">你必须找到更多的盟友，或者更强的力量来对抗皱皮大王...</strong>
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('🏰 前往东方古城', () => {
-                gameState.day++;
-                gameState.location = '东方古城';
-                showEastCityStory();
-            });
-            addOption('⛺ 建立营地休整', () => {
-                gameState.day += 2;
-                gameState.hunger -= 20;
-                gameState.thirst -= 20;
-                gameState.health = gameState.maxHealth;
-                updateUI();
-                showStory6();
-            });
-            addOption('🔮 向北前进', () => {
-                gameState.day++;
-                gameState.location = '黑暗之地';
-                showNorthStory();
-            });
-        }
-
-        function showEastCityStory() {
-            const storyText = `
-            <strong>第六天 - 东方古城</strong><br><br>
-            你来到了一座古老的城市废墟。城墙高耸，建筑宏伟。<br>
-            这里曾经是一个繁华的文明中心，现在却满是沧桑。<br>
-            一个身影出现在城门处...
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('🤝 靠近对方', () => {
-                showDialog('神秘人', '你好，旅者。你也是从皱皮大王的灾难中逃脱的吗？我叫云寒...');
-                setTimeout(() => {
-                    clearOptions();
-                    addOption('📖 了解更多信息', () => {
-                        showDialog('云寒', '皱皮大王是妖魔界的至强者。它率领的军队已经占领了大半个世界。听说它的老巢在北方的永夜堡垒。只有集合众人之力，才有可能打败它。');
-                        setTimeout(() => {
-                            clearOptions();
-                            addOption('🤝 结成同盟', () => {
-                                gameState.inventory['盟友：云寒'] = true;
-                                showMessage('云寒加入了你的队伍！', 'buff');
-                                setTimeout(showStory7, 1500);
-                            });
-                            addOption('⚔️ 拒绝并战斗', () => {
-                                gameState.inCombat = true;
-                                gameState.currentEnemy = {
-                                    name: '云寒',
-                                    health: 60,
-                                    maxHealth: 60,
-                                    attack: 12,
-                                    defense: 8,
-                                    experience: 150,
-                                    loot: {}
-                                };
-                                startCombat();
-                            });
-                        }, 500);
-                    });
-                    addOption('🚶 离开', () => showMiddleStory());
-                }, 500);
-            });
-            addOption('⚔️ 立即攻击', () => {
-                gameState.inCombat = true;
-                gameState.currentEnemy = {
-                    name: '城市守卫',
-                    health: 50,
-                    maxHealth: 50,
-                    attack: 11,
-                    defense: 7,
-                    experience: 120,
-                    loot: { '守卫剑': 1 }
-                };
-                startCombat();
-            });
-            addOption('🏃 离开古城', () => showMiddleStory());
-        }
-
-        function showStory6() {
-            const storyText = `
-            <strong>第八天 - 营地修整</strong><br><br>
-            你找到了一个隐蔽的山谷，建立了一个临时营地。<br>
-            在这里，你休息了整个白天和夜晚，恢复了体力。<br>
-            当你再次出发时，你感到前所未有的力量涌入体内...
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('🔥 前往北方要塞', () => {
-                gameState.day++;
-                showNorthStory();
-            });
-        }
-
-        function showNorthStory() {
-            const storyText = `
-            <strong>第${gameState.day}天 - 北方黑暗之地</strong><br><br>
-            你向北方前进，天空逐渐变得阴沉。<br>
-            远处隐约可见一座巨大的城堡，四周被黑暗的能量笼罩。<br>
-            这就是皱皮大王的巢穴——永夜堡垒！<br><br>
-            突然，大地震动，一群妖魔士兵出现在你面前！
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('⚔️ 迎战妖魔士兵', () => {
-                gameState.inCombat = true;
-                gameState.currentEnemy = {
-                    name: '妖魔士兵小队',
-                    health: 80,
-                    maxHealth: 80,
-                    attack: 13,
-                    defense: 6,
-                    experience: 200,
-                    loot: { '妖魔长剑': 1, '金币': 50 }
-                };
-                startCombat();
-            });
-            addOption('🛡️ 防守躲避', () => {
-                gameState.hunger -= 15;
-                gameState.health -= 20;
-                updateUI();
-                if (gameState.health <= 0) {
-                    showEnding('death');
-                } else {
-                    showMessage('你勉强躲过了一波妖魔的进攻！', 'buff');
-                    setTimeout(() => {
-                        clearOptions();
-                        addOption('🚪 冲进城堡大门', showFinalBattle);
-                        addOption('🏃 撤退', showMiddleStory);
-                    }, 1000);
-                }
-            });
-        }
-
-        function showStory7() {
-            const storyText = `
-            <strong>第七天 - 联盟时刻</strong><br><br>
-            与云寒的联合使你的力量大幅增强。<br>
-            你们开始制定计划，准备对皱皮大王进行最后的攻击。<br>
-            云寒告诉你一个关键信息：皱皮大王的真身就在永夜堡垒的最深处。
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('🔥 准备进攻', () => {
-                gameState.day++;
-                showFinalPreparation();
-            });
-        }
-
-        function showFinalPreparation() {
-            const storyText = `
-            <strong>第${gameState.day}天 - 最终准备</strong><br><br>
-            你整理好所有的装备，检查物品栏中的每一件物品。<br>
-            心中闪过杀死皱皮大王，为仙家军复仇的决心。<br><br>
-            <strong style="color: #ffd54f;">最终之战即将开始...</strong>
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('💪 前往永夜堡垒', () => {
-                gameState.day++;
-                gameState.location = '永夜堡垒';
-                showFinalBattle();
-            });
-            addOption('⚗️ 先制造强力武器', () => {
-                if (gameState.inventory['木材'] >= 5 && gameState.inventory['灵石']) {
-                    gameState.inventory['木材'] -= 5;
-                    gameState.inventory['灵石']--;
-                    gameState.inventory['灵能长剑'] = 1;
-                    gameState.attack += 15;
-                    updateUI();
-                    showMessage('你制造了灵能长剑！攻击力大幅提升！', 'buff');
-                    setTimeout(() => {
-                        clearOptions();
-                        addOption('⚔️ 现在前往决战', showFinalBattle);
-                    }, 1500);
-                } else {
-                    showMessage('材料不足！', 'damage');
-                }
-            });
-        }
-
-        function showFinalBattle() {
-            const storyText = `
-            <strong>第${gameState.day}天 - 永夜堡垒 最深处</strong><br><br>
-            你踏入了皱皮大王的宫殿，阴森的光线照亮了四周。<br>
-            最中央的王座上，坐着那个令人恐惧的身影——皱皮大王！<br>
-            它的身躯庞大无比，充满了邪恶的力量。<br><br>
-            皱皮大王发出了震天的怒吼："又有一个渺小的凡人敢来挑战我？"
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('⚔️ 开始决战', () => {
-                gameState.inCombat = true;
-                gameState.currentEnemy = {
-                    name: '皱皮大王',
-                    health: 200,
-                    maxHealth: 200,
-                    attack: 20,
-                    defense: 10,
-                    experience: 1000,
-                    loot: { '皱皮大王的冠冕': 1, '妖魔之心': 1 }
-                };
-                startCombat();
-            });
-        }
-
-        // 战斗系统
-        function startCombat() {
-            gameState.combatLog = [];
-            document.getElementById('combatLog').style.display = 'block';
-            document.getElementById('combatLogContent').innerHTML = '';
-
-            const storyText = `
-            <strong>⚔️ 战斗开始！</strong><br><br>
-            敌人：${gameState.currentEnemy.name}<br>
-            生命值：${gameState.currentEnemy.health}/${gameState.currentEnemy.maxHealth}
-            `;
-            displayStory(storyText);
-
-            showCombatOptions();
-        }
-
-        function showCombatOptions() {
-            clearOptions();
-            addOption('🗡️ 普通攻击', combatAttack);
-            addOption('💪 强力攻击', combatPowerAttack);
-            addOption('🛡️ 防守', combatDefend);
-            if (gameState.inventory['治疗药水'] > 0) {
-                addOption('⚗️ 使用治疗药水', () => {
-                    gameState.inventory['治疗药水']--;
-                    gameState.health = Math.min(gameState.health + 50, gameState.maxHealth);
-                    addCombatLog(`你使用了治疗药水，恢复了50点生命值！`, 'heal');
-                    updateUI();
-                    enemyTurn();
-                });
-            }
-            if (gameState.location === '永夜堡垒') {
-                addOption('🏃 逃离', () => {
-                    if (Math.random() > 0.7) {
-                        gameState.inCombat = false;
-                        addCombatLog('你成功逃离了战场！', 'buff');
-                        showMiddleStory();
-                    } else {
-                        addCombatLog('逃离失败！受到了敌人的攻击！', 'damage');
-                        enemyTurn();
-                    }
-                });
-            }
-        }
-
-        function combatAttack() {
-            const baseDamage = gameState.attack;
-            const randomFactor = Math.floor(Math.random() * 10) - 5;
-            const damage = Math.max(1, baseDamage + randomFactor - gameState.currentEnemy.defense / 2);
-
-            gameState.currentEnemy.health -= damage;
-            addCombatLog(`你对${gameState.currentEnemy.name}造成了${damage}点伤害！`, 'damage');
-
-            if (gameState.currentEnemy.health <= 0) {
-                combatVictory();
-            } else {
-                updateUI();
-                enemyTurn();
-            }
-        }
-
-        function combatPowerAttack() {
-            gameState.hunger -= 5;
-            gameState.thirst -= 5;
-            const baseDamage = gameState.attack * 1.5;
-            const randomFactor = Math.floor(Math.random() * 15) - 5;
-            const damage = Math.max(1, baseDamage + randomFactor - gameState.currentEnemy.defense);
-
-            gameState.currentEnemy.health -= damage;
-            addCombatLog(`你使用强力攻击对${gameState.currentEnemy.name}造成了${damage}点伤害！`, 'damage');
-
-            if (gameState.currentEnemy.health <= 0) {
-                combatVictory();
-            } else {
-                updateUI();
-                enemyTurn();
-            }
-        }
-
-        function combatDefend() {
-            gameState.defense += 5;
-            const damage = Math.max(0, gameState.currentEnemy.attack - gameState.defense / 2 - 5);
-            gameState.health -= damage;
-
-            addCombatLog(`你进入防守状态，只受到了${damage}点伤害！`, 'buff');
-
-            if (gameState.health <= 0) {
-                combatDefeat();
-            } else {
-                gameState.defense -= 5;
-                updateUI();
-                showCombatOptions();
-            }
-        }
-
-        function enemyTurn() {
-            setTimeout(() => {
-                const damage = Math.max(0, gameState.currentEnemy.attack - gameState.defense / 2 + Math.floor(Math.random() * 5) - 2);
-                gameState.health -= damage;
-
-                addCombatLog(`${gameState.currentEnemy.name}对你造成了${damage}点伤害！`, 'damage');
-
-                if (gameState.health <= 0) {
-                    combatDefeat();
-                } else {
-                    updateUI();
-                    showCombatOptions();
-                }
-            }, 800);
-        }
-
-        function combatVictory() {
-            addCombatLog(`========== 战斗胜利！==========`, 'buff');
-            addCombatLog(`你击败了${gameState.currentEnemy.name}！`, 'buff');
-
-            for (let item in gameState.currentEnemy.loot) {
-                const count = gameState.currentEnemy.loot[item];
-                gameState.inventory[item] = (gameState.inventory[item] || 0) + count;
-                addCombatLog(`获得了${item}x${count}！`, 'buff');
-            }
-
-            gameState.inCombat = false;
-
-            // 特殊处理：击败皱皮大王
-            if (gameState.currentEnemy.name === '皱皮大王') {
-                setTimeout(() => {
-                    showEnding('true');
-                }, 2000);
-            } else {
-                setTimeout(() => {
-                    document.getElementById('combatLog').style.display = 'none';
-                    updateUI();
-                    showAfterCombat();
-                }, 2000);
-            }
-        }
-
-        function combatDefeat() {
-            addCombatLog(`========== 战斗失败！==========`, 'damage');
-            addCombatLog(`你被${gameState.currentEnemy.name}击败了！`, 'damage');
-
-            gameState.inCombat = false;
-
-            setTimeout(() => {
-                showEnding('death');
-            }, 2000);
-        }
-
-        function showAfterCombat() {
-            const storyText = `
-            <strong>战斗后</strong><br><br>
-            经历了激烈的战斗，你感到疲惫和伤痛。<br>
-            但你活了下来！你变得更强了。<br><br>
-            下一步该去哪里呢？
-            `;
-            displayStory(storyText);
-
-            clearOptions();
-            addOption('⛺ 休息恢复', () => {
-                gameState.day++;
-                gameState.hunger = 100;
-                gameState.thirst = 100;
-                gameState.health = gameState.maxHealth;
-                updateUI();
-                showMessage('你休息了一整天，完全恢复了！', 'heal');
-                setTimeout(showFinalPreparation, 1500);
-            });
-            addOption('🔥 继续前进', () => {
-                gameState.day++;
-                showFinalPreparation();
-            });
-        }
-
-        // 结局
-        function showEnding(type) {
-            showSection('endingSection');
-            let title = '';
-            let content = '';
-            let contentClass = '';
-
-            if (type === 'true') {
-                title = '真结局 - 复仇完成';
-                contentClass = 'good';
-                content = `
-                <p style="margin-bottom: 20px;">
-                皱皮大王发出最后的惨叫声，庞大的身躯轰然倒地。<br>
-                邪恶的力量从它体内消散，永夜堡垒开始崩塌。
-                </p>
-                <p style="margin-bottom: 20px;">
-                你站在废墟中，终于为仙家军的所有人复了仇。<br>
-                虽然家园已经无法重建，但皱皮大王的威胁彻底消除了。
-                </p>
-                <p style="margin-bottom: 20px;">
-                你的眼中闪烁着泪光。在风中，你似乎听到了所有失去的同伴在歌唱...
-                </p>
-                <p style="color: #ffd54f; font-size: 1.1em;">
-                ⭐ 恭喜！你达成了真结局！⭐
-                </p>
-                `;
-            } else if (type === 'death') {
-                title = '死亡结局 - 永眠';
-                contentClass = 'bad';
-                content = `
-                <p style="margin-bottom: 20px;">
-                你的生命在战斗中逐渐流逝...<br>
-                意识变得模糊，眼前的世界开始褪色。
-                </p>
-                <p style="margin-bottom: 20px;">
-                你没有能够完成复仇的誓言。<br>
-                皱皮大王依然活在这个世界上，继续为害...
-                </p>
-                <p style="margin-bottom: 20px;">
-                你的身体永远地留在了这片荒芜的土地上。
-                </p>
-                <p style="color: #f44336; font-size: 1.1em;">
-                ❌ 游戏结束 ❌
-                </p>
-                `;
-            }
-
-            document.getElementById('endingTitle').textContent = title;
-            document.getElementById('endingContent').innerHTML = content;
-            document.getElementById('endingContent').className = contentClass;
-        }
-
-        // UI 辅助函数
-        function displayStory(text) {
-            document.getElementById('storyText').innerHTML = text;
-        }
-
-        function showDialog(name, text) {
-            const dialogHTML = `
-            <div class="dialog-box">
-                <div class="dialog-name">${name}：</div>
-                <div class="dialog-text">${text}</div>
-            </div>
-            `;
-            document.getElementById('storyText').innerHTML = dialogHTML;
-        }
-
-        function addCombatLog(text, type = 'normal') {
-            const logItem = document.createElement('div');
-            logItem.className = `combat-log-item ${type}`;
-            logItem.textContent = text;
-            document.getElementById('combatLogContent').appendChild(logItem);
-            document.getElementById('combatLogContent').scrollTop = document.getElementById('combatLogContent').scrollHeight;
-        }
-
-        function clearOptions() {
-            document.getElementById('optionsContainer').innerHTML = '';
-        }
-
-        function addOption(text, callback) {
-            const btn = document.createElement('button');
-            btn.className = 'btn';
-            btn.textContent = text;
-            btn.onclick = callback;
-            document.getElementById('optionsContainer').appendChild(btn);
-        }
-
-        function showMessage(text, type = 'normal') {
-            const tempDiv = document.createElement('div');
-            tempDiv.style.cssText = 'position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.9); color: white; padding: 15px 25px; border-radius: 5px; border-left: 3px solid; z-index: 1000; font-weight: bold;';
+            },
+            inventory: {},
+            currentEnemy: null,
+            inBattle: false,
+            turnsAlived: 0,
+            bossDefeated: false,
+            visitedLocations: new Set(),
+            storyProgress: 0,
+            savedAlly: false
+        };
+
+        let attributePoints = 10;
+
+        // 初始化角色选择
+        function initCharacterSelection() {
+            const characterList = document.getElementById('character-list');
+            characterList.innerHTML = '';
             
-            if (type === 'damage') {
-                tempDiv.borderLeftColor = '#f44336';
-                tempDiv.color = '#f44336';
-            } else if (type === 'heal') {
-                tempDiv.borderLeftColor = '#4caf50';
-                tempDiv.color = '#4caf50';
-            } else if (type === 'buff') {
-                tempDiv.borderLeftColor = '#64b5f6';
-                tempDiv.color = '#64b5f6';
-            }
-
-            tempDiv.textContent = text;
-            document.body.appendChild(tempDiv);
-
-            setTimeout(() => {
-                tempDiv.remove();
-            }, 3000);
+            characters.forEach(char => {
+                const card = document.createElement('div');
+                card.className = 'character-card';
+                card.onclick = () => selectCharacter(char.id);
+                card.id = `char-${char.id}`;
+                card.innerHTML = `
+                    <div class="character-name">${char.name}</div>
+                    <div class="character-desc">${char.desc}</div>
+                    <div class="character-stats">
+                        生命: ${char.baseStats.hp} | 
+                        攻击: ${char.baseStats.attack} | 
+                        防御: ${char.baseStats.defense}
+                    </div>
+                    <div class="character-desc" style="color: #4caf50; margin-top: 10px;">
+                        特殊能力: ${char.ability}
+                    </div>
+                `;
+                characterList.appendChild(card);
+            });
         }
 
-        function updateUI() {
-            // 更新生命值
-            const healthPercent = (gameState.health / gameState.maxHealth) * 100;
-            document.getElementById('health-display').textContent = `${gameState.health}/${gameState.maxHealth}`;
-            document.getElementById('health-bar').style.width = healthPercent + '%';
+        // 选择角色
+        function selectCharacter(charId) {
+            document.querySelectorAll('.character-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.getElementById(`char-${charId}`).classList.add('selected');
+            
+            gameState.selectedCharacter = characters.find(c => c.id === charId);
+            document.getElementById('select-char-btn').disabled = false;
+        }
 
-            // 更新饱食度
-            const hungerPercent = (gameState.hunger / 100) * 100;
-            document.getElementById('hunger-display').textContent = `${gameState.hunger}/100`;
-            document.getElementById('hunger-bar').style.width = hungerPercent + '%';
-            if (gameState.hunger < 30) {
-                document.getElementById('hunger-fill').style.background = 'linear-gradient(90deg, #f44336, #ff9800)';
+        // 开始属性加点
+        function startAttributeAllocation() {
+            if (!gameState.selectedCharacter) return;
+            
+            document.getElementById('intro-screen').classList.remove('active');
+            document.getElementById('attribute-screen').classList.add('active');
+            
+            initAttributePanel();
+        }
+
+        // 初始化属性面板
+        function initAttributePanel() {
+            const panel = document.getElementById('attribute-panel');
+            const attrs = ['strength', '力量 (攻击+2)', 'vitality', '体质 (生命+10)', 'endurance', '耐力 (防御+2)', 'agility', '敏捷 (闪避+2%)'];
+            
+            panel.innerHTML = '';
+            for (let i = 0; i < attrs.length; i += 2) {
+                const attrKey = attrs[i];
+                const attrName = attrs[i + 1];
+                
+                const item = document.createElement('div');
+                item.className = 'attribute-item';
+                item.innerHTML = `
+                    <span>${attrName}</span>
+                    <div class="attribute-controls">
+                        <button class="attr-btn" onclick="decreaseAttr('${attrKey}')">-</button>
+                        <span class="attr-value" id="attr-${attrKey}">0</span>
+                        <button class="attr-btn" onclick="increaseAttr('${attrKey}')">+</button>
+                    </div>
+                `;
+                panel.appendChild(item);
             }
+            
+            updateAttributeDisplay();
+        }
 
-            // 更新渴望度
-            const thirstPercent = (gameState.thirst / 100) * 100;
-            document.getElementById('thirst-display').textContent = `${gameState.thirst}/100`;
-            document.getElementById('thirst-bar').style.width = thirstPercent + '%';
-            if (gameState.thirst < 30) {
-                document.getElementById('thirst-fill').style.background = 'linear-gradient(90deg, #f44336, #2196f3)';
+        // 增加属性
+        function increaseAttr(attr) {
+            if (attributePoints > 0) {
+                gameState.player.attributes[attr]++;
+                attributePoints--;
+                updateAttributeDisplay();
             }
+        }
 
-            // 更新日期和位置
-            document.getElementById('day-display').textContent = `第 ${gameState.day} 天`;
-            document.getElementById('location-display').textContent = gameState.location;
+        // 减少属性
+        function decreaseAttr(attr) {
+            if (gameState.player.attributes[attr] > 0) {
+                gameState.player.attributes[attr]--;
+                attributePoints++;
+                updateAttributeDisplay();
+            }
+        }
 
-            // 更新状态
-            let status = '正常';
-            if (gameState.hunger < 20) status = '<span style="color: #f44336;">饥饿</span>';
-            if (gameState.thirst < 20) status = '<span style="color: #f44336;">干渴</span>';
-            if (gameState.health < gameState.maxHealth * 0.3) status = '<span style="color: #f44336;">重伤</span>';
-            document.getElementById('status-display').innerHTML = status;
+        // 更新属性显示
+        function updateAttributeDisplay() {
+            document.getElementById('points-remaining').textContent = attributePoints;
+            
+            for (let attr in gameState.player.attributes) {
+                document.getElementById(`attr-${attr}`).textContent = gameState.player.attributes[attr];
+            }
+            
+            document.getElementById('start-game-btn').disabled = attributePoints > 0;
+        }
 
-            // 更新物品栏
-            const inventoryContainer = document.getElementById('inventoryItems');
-            inventoryContainer.innerHTML = '';
-            for (let item in gameState.inventory) {
-                const count = gameState.inventory[item];
-                if (count > 0 && typeof count === 'number') {
-                    const itemDiv = document.createElement('div');
-                    itemDiv.className = 'item';
-                    itemDiv.innerHTML = `<div class="item-name">${item}</div><div class="item-count">x${count}</div>`;
-                    inventoryContainer.appendChild(itemDiv);
+        // 开始游戏
+        function startGame() {
+            const char = gameState.selectedCharacter;
+            const attrs = gameState.player.attributes;
+            
+            gameState.player.name = char.name;
+            gameState.player.maxHp = char.baseStats.hp + attrs.vitality * 10;
+            gameState.player.hp = gameState.player.maxHp;
+            gameState.player.baseAttack = char.baseStats.attack + attrs.strength * 2;
+            gameState.player.baseDefense = char.baseStats.defense + attrs.endurance * 2;
+            gameState.player.ability = char.ability;
+            gameState.player.agility = attrs.agility * 2;
+            
+            gameState.inventory = {
+                food: 3,
+                water: 3,
+                herb: 2,
+                wood: 5,
+                stone: 2
+            };
+            
+            document.getElementById('attribute-screen').classList.remove('active');
+            document.getElementById('game-screen').classList.add('active');
+            
+            initLocationButtons();
+            updateStatusBar();
+            updateCharacterDisplay();
+            addGameLog('游戏开始！你在仙家军的遗迹中醒来...');
+            addGameLog('你需要变强，找到皱皮大王复仇！');
+        }
+
+        // 初始化地点按钮
+        function initLocationButtons() {
+            const nav = document.getElementById('location-nav');
+            nav.innerHTML = '';
+            
+            locations.forEach(loc => {
+                const btn = document.createElement('button');
+                btn.className = 'location-btn';
+                if (loc.id === gameState.currentLocation) {
+                    btn.classList.add('active');
+                }
+                btn.textContent = loc.name;
+                btn.onclick = () => travelToLocation(loc.id);
+                nav.appendChild(btn);
+            });
+        }
+
+        // 旅行到地点
+        function travelToLocation(locationId) {
+            gameState.currentLocation = locationId;
+            gameState.turnsAlived++;
+            gameState.visitedLocations.add(locationId);
+            
+            const location = locations.find(l => l.id === locationId);
+            const content = document.getElementById('game-content');
+            
+            content.innerHTML = '';
+            
+            addGameLog(`📍 你来到了 ${location.name}`);
+            addGameLog(location.description);
+            
+            // 显示地点特殊故事
+            if (locationId === 'company' && !gameState.savedAlly) {
+                addGameLog(`<div class="event-dialog">
+                    <div class="event-title">⚠️ 发现异状</div>
+                    ${location.story}
+                </div>`);
+                gameState.savedAlly = true;
+            } else if (locationId === 'temple' && gameState.storyProgress < 2) {
+                addGameLog(`<div class="event-dialog">
+                    <div class="event-title">📖 古籍记载</div>
+                    ${location.story}
+                </div>`);
+                gameState.storyProgress = 2;
+            }
+            
+            // 消耗资源
+            gameState.player.hunger -= 3;
+            gameState.player.thirst -= 5;
+            
+            updateStatusBar();
+            updateLocationDisplay();
+            initLocationButtons();
+            checkSurvival();
+        }
+
+        // 更新位置显示
+        function updateLocationDisplay() {
+            const location = locations.find(l => l.id === gameState.currentLocation);
+            document.getElementById('location-display').textContent = location.name;
+        }
+
+        // 更新角色显示
+        function updateCharacterDisplay() {
+            document.getElementById('character-name').textContent = gameState.player.name;
+        }
+
+        // 更新状态栏
+        function updateStatusBar() {
+            const p = gameState.player;
+            document.getElementById('hp-display').textContent = `${Math.max(0, p.hp)}/${p.maxHp}`;
+            document.getElementById('hunger-display').textContent = `${Math.max(0, p.hunger)}/${p.maxHunger}`;
+            document.getElementById('thirst-display').textContent = `${Math.max(0, p.thirst)}/${p.maxThirst}`;
+            
+            const totalAttack = p.baseAttack + p.bonusAttack;
+            const totalDefense = p.baseDefense + p.bonusDefense;
+            
+            document.getElementById('attack-display').textContent = totalAttack;
+            document.getElementById('defense-display').textContent = totalDefense;
+            
+            if (p.hp <= 0) {
+                gameOver(false);
+            }
+        }
+
+        // 添加游戏日志
+        function addGameLog(message) {
+            const content = document.getElementById('game-content');
+            const p = document.createElement('p');
+            p.innerHTML = message;
+            p.style.marginTop = '10px';
+            content.appendChild(p);
+            content.scrollTop = content.scrollHeight;
+        }
+
+        // 探索
+        function explore() {
+            gameState.turnsAlived++;
+            
+            gameState.player.hunger -= 5;
+            gameState.player.thirst -= 8;
+            
+            const location = locations.find(l => l.id === gameState.currentLocation);
+            const rand = Math.random();
+            
+            if (rand < 0.4) {
+                // 发现资源
+                const resources = location.resources;
+                const foundResource = resources[Math.floor(Math.random() * resources.length)];
+                let amount = Math.floor(Math.random() * 3) + 1;
+                
+                // 河北小杨特殊能力
+                if (gameState.player.name === '河北小杨') {
+                    amount = Math.floor(amount * 1.5);
+                }
+                
+                addToInventory(foundResource, amount);
+                addGameLog(`🎉 探索成功！你发现了 ${items[foundResource].name} x${amount}`);
+            } else if (rand < 0.7) {
+                // 遇到敌人
+                startBattle(location);
+            } else {
+                // 什么都没有
+                addGameLog('你在 ' + location.name + ' 中搜索，但什么都没找到...');
+            }
+            
+            updateStatusBar();
+            checkSurvival();
+        }
+
+        // 显示背包
+        function showInventory() {
+            document.getElementById('game-screen').classList.remove('active');
+            document.getElementById('inventory-screen').classList.add('active');
+            
+            const inventoryList = document.getElementById('inventory-list');
+            inventoryList.innerHTML = '';
+            
+            if (Object.keys(gameState.inventory).length === 0) {
+                inventoryList.innerHTML = '<p style="text-align: center; color: #bbb;">背包是空的</p>';
+                return;
+            }
+            
+            for (let itemId in gameState.inventory) {
+                if (gameState.inventory[itemId] > 0) {
+                    const item = items[itemId];
+                    const div = document.createElement('div');
+                    div.className = 'item';
+                    div.onclick = () => useItem(itemId);
+                    div.innerHTML = `
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-count">x${gameState.inventory[itemId]}</div>
+                    `;
+                    inventoryList.appendChild(div);
                 }
             }
+        }
 
-            if (Object.keys(gameState.inventory).length > 0) {
-                document.getElementById('inventoryContainer').style.display = 'block';
-            }
-
-            // 检查是否饿死或渴死
-            gameState.hunger = Math.max(0, gameState.hunger - 0.5);
-            gameState.thirst = Math.max(0, gameState.thirst - 0.5);
-
-            if (gameState.hunger <= 0) {
-                showMessage('你因为饥荒而死亡！', 'damage');
-                setTimeout(() => showEnding('death'), 1500);
+        // 使用物品
+        function useItem(itemId) {
+            if (!gameState.inventory[itemId] || gameState.inventory[itemId] <= 0) {
                 return;
             }
-
-            if (gameState.thirst <= 0) {
-                showMessage('你因为缺水而死亡！', 'damage');
-                setTimeout(() => showEnding('death'), 1500);
+            
+            const item = items[itemId];
+            
+            if (item.craftMaterial || item.special) {
+                addGameLog(`${item.name} 不能直接使用`);
                 return;
             }
-
-            if (gameState.health <= 0) {
-                showEnding('death');
-                return;
+            
+            let used = false;
+            let message = '';
+            
+            if (item.hp) {
+                let healAmount = item.hp;
+                if (gameState.player.name === '陈雨欣') {
+                    healAmount = Math.floor(healAmount * 1.5);
+                }
+                gameState.player.hp = Math.min(gameState.player.maxHp, gameState.player.hp + healAmount);
+                message = `使用了 ${item.name}，恢复了 ${healAmount} 点生命值`;
+                used = true;
+            }
+            
+            if (item.hunger) {
+                gameState.player.hunger = Math.min(gameState.player.maxHunger, gameState.player.hunger + item.hunger);
+                message = `使用了 ${item.name}，恢复了饱食度`;
+                used = true;
+            }
+            
+            if (item.thirst) {
+                gameState.player.thirst = Math.min(gameState.player.maxThirst, gameState.player.thirst + item.thirst);
+                message = `使用了 ${item.name}，恢复了饥渴度`;
+                used = true;
+            }
+            
+            if (used) {
+                gameState.inventory[itemId]--;
+                addGameLog(`✅ ${message}`);
+                updateStatusBar();
+                showInventory();
             }
         }
+
+        // 显示合成界面
+        function showCraft() {
+            document.getElementById('game-screen').classList.remove('active');
+            document.getElementById('craft-screen').classList.add('active');
+            
+            const recipesList = document.getElementById('craft-recipes');
+            recipesList.innerHTML = '';
+            
+            recipes.forEach((recipe, index) => {
+                const canCraft = checkCanCraft(recipe);
+                const div = document.createElement('div');
+                div.className = 'recipe';
+                
+                let materialsText = '';
+                for (let mat in recipe.materials) {
+                    const need = recipe.materials[mat];
+                    const have = gameState.inventory[mat] || 0;
+                    materialsText += `${items[mat].name}: ${have}/${need} `;
+                }
+                
+                div.innerHTML = `
+                    <div class="recipe-info">
+                        <div class="recipe-name">${recipe.name}</div>
+                        <div class="recipe-materials">材料: ${materialsText}</div>
+                        <div style="color: #64b5f6; font-size: 0.85em; margin-top: 5px;">${recipe.desc}</div>
+                    </div>
+                    <button class="btn ${canCraft ? 'btn-primary' : 'btn-disabled'}" 
+                            onclick="craft(${index})" 
+                            ${canCraft ? '' : 'disabled'}>
+                        合成
+                    </button>
+                `;
+                recipesList.appendChild(div);
+            });
+        }
+
+        // 检查能否合成
+        function checkCanCraft(recipe) {
+            for (let mat in recipe.materials) {
+                if (!gameState.inventory[mat] || gameState.inventory[mat] < recipe.materials[mat]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // 合成物品
+        function craft(recipeIndex) {
+            const recipe = recipes[recipeIndex];
+            
+            if (!checkCanCraft(recipe)) {
+                return;
+            }
+            
+            for (let mat in recipe.materials) {
+                gameState.inventory[mat] -= recipe.materials[mat];
+            }
+            
+            if (recipe.result.item) {
+                addToInventory(recipe.result.item, 1);
+                addGameLog(`🔨 成功合成了 ${items[recipe.result.item].name}！`);
+            } else {
+                if (recipe.result.attack) {
+                    gameState.player.bonusAttack += recipe.result.attack;
+                    addGameLog(`🔨 成功合成了 ${recipe.name}！攻击力 +${recipe.result.attack}`);
+                }
+                if (recipe.result.defense) {
+                    gameState.player.bonusDefense += recipe.result.defense;
+                    addGameLog(`🔨 成功合成了 ${recipe.name}！防御力 +${recipe.result.defense}`);
+                }
+            }
+            
+            updateStatusBar();
+            showCraft();
+        }
+
+        // 休息
+        function rest() {
+            gameState.turnsAlived++;
+            
+            const healAmount = Math.floor(gameState.player.maxHp * 0.3);
+            gameState.player.hp = Math.min(gameState.player.maxHp, gameState.player.hp + healAmount);
+            gameState.player.hunger -= 10;
+            gameState.player.thirst -= 10;
+            
+            addGameLog(`😴 你在 ${locations.find(l => l.id === gameState.currentLocation).name} 休息了，恢复了 ${healAmount} 点生命值`);
+            updateStatusBar();
+            checkSurvival();
+        }
+
+        // 寻找Boss
+        function findBoss() {
+            if (gameState.bossDefeated) {
+                addGameLog('皱皮大王已经被你消灭了！');
+                return;
+            }
+            
+            const totalPower = gameState.player.baseAttack + gameState.player.bonusAttack + 
+                              gameState.player.baseDefense + gameState.player.bonusDefense;
+            
+            if (totalPower < 50) {
+                addGameLog('⚠️ 你感觉自己还不够强大，需要更多的装备和准备...');
+                addGameLog('💡 提示: 需要总战力达到50以上！');
+                return;
+            }
+            
+            if (gameState.player.hp < gameState.player.maxHp * 0.5) {
+                addGameLog('⚠️ 你的状态不太好，应该先治疗一下...');
+                return;
+            }
+            
+            addGameLog('你决定向永夜堡垒前进...');
+            addGameLog('天空变得越来越黑，邪恶的力量笼罩着大地...');
+            addGameLog('你找到了通往永夜堡垒的入口！');
+            setTimeout(() => {
+                startBossBattle();
+            }, 1000);
+        }
+
+        // 开始普通战斗
+        function startBattle(location) {
+            const enemyNames = location.encounters;
+            const enemyName = enemyNames[Math.floor(Math.random() * enemyNames.length)];
+            const enemy = JSON.parse(JSON.stringify(enemies[enemyName]));
+            enemy.maxHp = enemy.hp;
+            gameState.currentEnemy = enemy;
+            gameState.inBattle = true;
+            
+            document.getElementById('game-screen').classList.remove('active');
+            document.getElementById('battle-screen').classList.add('active');
+            
+            document.getElementById('enemy-name').textContent = enemyName;
+            document.getElementById('enemy-hp').textContent = `${enemy.hp}/${enemy.maxHp}`;
+            
+            const battleLog = document.getElementById('battle-log');
+            battleLog.innerHTML = `<p>在 ${location.name} 中，你遭遇了 ${enemyName}！</p>`;
+        }
+
+        // 开始Boss战斗
+        function startBossBattle() {
+            gameState.currentEnemy = JSON.parse(JSON.stringify(bossEnemy));
+            gameState.inBattle = true;
+            
+            document.getElementById('game-screen').classList.remove('active');
+            document.getElementById('battle-screen').classList.add('active');
+            
+            document.getElementById('enemy-name').textContent = bossEnemy.name;
+            document.getElementById('enemy-hp').textContent = `${bossEnemy.hp}/${bossEnemy.maxHp}`;
+            
+            const battleLog = document.getElementById('battle-log');
+            battleLog.innerHTML = `
+                <p>你踏入了永夜堡垒，刺骨的寒风迎面吹来。</p>
+                <p>阴森的光线照亮了周围。最中央的王座上，坐着那个令人恐惧的身影——皱皮大王！</p>
+                <p>它的身躯庞大无比，充满了邪恶的力量。无数灵魂在它周围哭喊。</p>
+                <p class="damage" style="color: #ff1744;">皱皮大王发出了震天的怒吼："又有一个凡人敢来挑战我？你们都会沦为我的养分！"</p>
+            `;
+        }
+
+        // 攻击
+        function attack() {
+            if (!gameState.inBattle || !gameState.currentEnemy) return;
+            
+            const enemy = gameState.currentEnemy;
+            const player = gameState.player;
+            const battleLog = document.getElementById('battle-log');
+            
+            let playerDamage = player.baseAttack + player.bonusAttack - enemy.defense;
+            playerDamage = Math.max(1, playerDamage);
+            
+            // 诸天未来仙帝特殊能力
+            if (player.name === '诸天未来仙帝') {
+                playerDamage = Math.floor(playerDamage * 1.2);
+            }
+            
+            // 神圣之剑对Boss的特殊效果
+            if (enemy.name === '皱皮大王' && player.bonusAttack >= 40) {
+                playerDamage = Math.floor(playerDamage * 1.5);
+                battleLog.innerHTML += `<p class="damage">⚡ 神圣之剑闪烁着光芒，造成 ${playerDamage} 点伤害！</p>`;
+            } else if (player.name === '鬼姥' && Math.random() < 0.3) {
+                playerDamage *= 2;
+                battleLog.innerHTML += `<p class="damage">💀 致命一击！造成 ${playerDamage} 点伤害！</p>`;
+            } else {
+                battleLog.innerHTML += `<p class="damage">⚔️ 你攻击了 ${enemy.name}，造成 ${playerDamage} 点伤害</p>`;
+            }
+            
+            enemy.hp -= playerDamage;
+            
+            if (enemy.hp <= 0) {
+                enemy.hp = 0;
+                battleLog.innerHTML += `<p class="heal">🎉 你击败了 ${enemy.name}！</p>`;
+                
+                if (enemy.name === '皱皮大王') {
+                    gameState.bossDefeated = true;
+                    setTimeout(() => {
+                        gameOver(true);
+                    }, 2000);
+                } else {
+                    enemy.reward.forEach(itemId => {
+                        const amount = Math.floor(Math.random() * 2) + 1;
+                        addToInventory(itemId, amount);
+                        battleLog.innerHTML += `<p class="heal">获得 ${items[itemId].name} x${amount}</p>`;
+                    });
+                    
+                    setTimeout(() => {
+                        endBattle();
+                    }, 2000);
+                }
+                
+                document.getElementById('enemy-hp').textContent = `0/${enemy.maxHp}`;
+                battleLog.scrollTop = battleLog.scrollHeight;
+                return;
+            }
+            
+            // 敌人反击
+            let enemyDamage = enemy.attack - (player.baseDefense + player.bonusDefense);
+            enemyDamage = Math.max(1, enemyDamage);
+            
+            // Boss特殊攻击
+            if (enemy.name === '皱皮大王' && Math.random() < 0.3) {
+                enemyDamage = Math.floor(enemyDamage * 2);
+                battleLog.innerHTML += `<p class="damage">🌑 皱皮大王使用了邪恶能量，造成 ${enemyDamage} 点伤害！</p>`;
+            }
+            
+            // 刘世鹏特殊能力
+            if (player.name === '刘世鹏') {
+                enemyDamage = Math.floor(enemyDamage * 0.7);
+            }
+            
+            // 白狐特殊能力
+            const dodgeChance = (player.agility || 0) / 100 + (player.name === '白狐' ? 0.25 : 0);
+            if (Math.random() < dodgeChance) {
+                battleLog.innerHTML += `<p class="heal">✨ 你灵巧地闪避了攻击！</p>`;
+            } else {
+                player.hp -= enemyDamage;
+                battleLog.innerHTML += `<p class="damage">💥 ${enemy.name} 反击，造成 ${enemyDamage} 点伤害</p>`;
+            }
+            
+            document.getElementById('enemy-hp').textContent = `${enemy.hp}/${enemy.maxHp}`;
+            updateStatusBar();
+            battleLog.scrollTop = battleLog.scrollHeight;
+            
+            if (player.hp <= 0) {
+                setTimeout(() => {
+                    gameOver(false);
+                }, 1000);
+            }
+        }
+
+        // 战斗中使用治疗
+        function useHealItem() {
+            const healItems = ['herb', 'potion', 'meat'];
+            let used = false;
+            
+            for (let itemId of healItems) {
+                if (gameState.inventory[itemId] && gameState.inventory[itemId] > 0) {
+                    useItem(itemId);
+                    
+                    const battleLog = document.getElementById('battle-log');
+                    battleLog.innerHTML += `<p class="heal">💊 使用了 ${items[itemId].name}</p>`;
+                    
+                    const enemy = gameState.currentEnemy;
+                    let enemyDamage = enemy.attack - (gameState.player.baseDefense + gameState.player.bonusDefense);
+                    enemyDamage = Math.max(1, enemyDamage);
+                    
+                    if (gameState.player.name === '刘世鹏') {
+                        enemyDamage = Math.floor(enemyDamage * 0.7);
+                    }
+                    
+                    const dodgeChance = (gameState.player.agility || 0) / 100 + (gameState.player.name === '白狐' ? 0.25 : 0);
+                    if (Math.random() < dodgeChance) {
+                        battleLog.innerHTML += `<p class="heal">✨ 你闪避了攻击！</p>`;
+                    } else {
+                        gameState.player.hp -= enemyDamage;
+                        battleLog.innerHTML += `<p class="damage">💥 ${enemy.name} 趁机攻击，造成 ${enemyDamage} 点伤害</p>`;
+                    }
+                    
+                    updateStatusBar();
+                    battleLog.scrollTop = battleLog.scrollHeight;
+                    used = true;
+                    break;
+                }
+            }
+            
+            if (!used) {
+                const battleLog = document.getElementById('battle-log');
+                battleLog.innerHTML += `<p>❌ 没有可用的治疗物品！</p>`;
+            }
+        }
+
+        // 逃跑
+        function flee() {
+            if (gameState.currentEnemy.name === '皱皮大王') {
+                const battleLog = document.getElementById('battle-log');
+                battleLog.innerHTML += `<p class="damage">⚠️ 无法从皱皮大王面前逃跑！它的力量完全封锁了这个空间！</p>`;
+                return;
+            }
+            
+            if (Math.random() < 0.6) {
+                const battleLog = document.getElementById('battle-log');
+                battleLog.innerHTML += `<p class="heal">🏃 你成功逃跑了！</p>`;
+                setTimeout(() => {
+                    endBattle();
+                }, 1000);
+            } else {
+                const battleLog = document.getElementById('battle-log');
+                battleLog.innerHTML += `<p class="damage">❌ 逃跑失败！</p>`;
+                
+                const enemy = gameState.currentEnemy;
+                let enemyDamage = enemy.attack - (gameState.player.baseDefense + gameState.player.bonusDefense);
+                enemyDamage = Math.max(1, enemyDamage);
+                
+                if (gameState.player.name === '刘世鹏') {
+                    enemyDamage = Math.floor(enemyDamage * 0.7);
+                }
+                
+                gameState.player.hp -= enemyDamage;
+                battleLog.innerHTML += `<p class="damage">💥 ${enemy.name} 追击，造成 ${enemyDamage} 点伤害</p>`;
+                updateStatusBar();
+            }
+        }
+
+        // 结束战斗
+        function endBattle() {
+            gameState.inBattle = false;
+            gameState.currentEnemy = null;
+            
+            document.getElementById('battle-screen').classList.remove('active');
+            document.getElementById('game-screen').classList.add('active');
+            
+            addGameLog('战斗结束，你继续前进...');
+        }
+
+        // 返回游戏
+        function backToGame() {
+            document.getElementById('inventory-screen').classList.remove('active');
+            document.getElementById('craft-screen').classList.remove('active');
+            document.getElementById('game-screen').classList.add('active');
+        }
+
+        // 添加到背包
+        function addToInventory(itemId, amount) {
+            if (!gameState.inventory[itemId]) {
+                gameState.inventory[itemId] = 0;
+            }
+            gameState.inventory[itemId] += amount;
+        }
+
+        // 检查生存状态
+        function checkSurvival() {
+            if (gameState.player.hunger <= 0) {
+                gameState.player.hp -= 10;
+                addGameLog('⚠️ 你太饿了，损失了10点生命值！');
+            }
+            
+            if (gameState.player.thirst <= 0) {
+                gameState.player.hp -= 15;
+                addGameLog('⚠️ 你口渴难耐，损失了15点生命值！');
+            }
+            
+            updateStatusBar();
+        }
+
+        // 游戏结束
+        function gameOver(victory) {
+            document.querySelectorAll('.game-screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            document.getElementById('ending-screen').classList.add('active');
+            
+            const endingContent = document.getElementById('ending-content');
+            
+            if (victory) {
+                endingContent.innerHTML = `
+                    <h2 class="victory">🎊 真·结局：复仇完成 🎊</h2>
+                    <p style="margin-bottom: 20px; color: #ffd54f;">
+                        皱皮大王发出最后的惨叫声，邪恶的力量从它体内消散。<br>
+                        庞大的身躯轰然倒地，永夜堡垒开始崩塌！
+                    </p>
+                    <p style="margin-bottom: 20px;">
+                        黑暗被光明驱散，被禁锢的灵魂获得了解脱。<br>
+                        你站在废墟中，终于为仙家军的所有人复了仇。
+                    </p>
+                    <p style="margin-bottom: 20px;">
+                        虽然家园已经无法重建，但皱皮大王的威胁彻底消除了。<br>
+                        新的时代即将开始...
+                    </p>
+                    <p style="margin-bottom: 20px;">
+                        你的眼中闪烁着泪光。在风中，你似乎听到了所有失去的同伴在歌唱...
+                    </p>
+                    <div style="background: rgba(76, 175, 80, 0.2); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <p style="color: #4caf50;"><strong>游戏统计</strong></p>
+                        <p>角色: ${gameState.player.name}</p>
+                        <p>存活回合: ${gameState.turnsAlived}</p>
+                        <p>访问地点: ${gameState.visitedLocations.size} 个</p>
+                        <p>最终攻击力: ${gameState.player.baseAttack + gameState.player.bonusAttack}</p>
+                        <p>最终防御力: ${gameState.player.baseDefense + gameState.player.bonusDefense}</p>
+                    </div>
+                    <button class="btn btn-primary" onclick="location.reload()">重新开始</button>
+                `;
+            } else {
+                endingContent.innerHTML = `
+                    <h2 class="defeat">💀 游戏结束 💀</h2>
+                    <p style="margin-bottom: 20px;">
+                        你的生命值归零了...<br>
+                        复仇之路到此为止。
+                    </p>
+                    <p style="color: #f44336; margin-bottom: 20px;">
+                        但是，仙家军的意志不会消亡！<br>
+                        总会有人继续战斗下去...
+                    </p>
+                    <div style="background: rgba(244, 67, 54, 0.2); padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <p style="color: #f44336;"><strong>游戏统计</strong></p>
+                        <p>角色: ${gameState.player.name}</p>
+                        <p>存活回合: ${gameState.turnsAlived}</p>
+                        <p>访问地点: ${gameState.visitedLocations.size} 个</p>
+                        <p>最后位置: ${locations.find(l => l.id === gameState.currentLocation).name}</p>
+                    </div>
+                    <button class="btn btn-danger" onclick="location.reload()">重新开始</button>
+                `;
+            }
+        }
+
+        // 页面加载时初始化
+        window.onload = function() {
+            initCharacterSelection();
+        };
     </script>
 </body>
 </html>
