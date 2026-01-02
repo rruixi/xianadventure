@@ -363,6 +363,15 @@
         .item-count {
             color: #ffd54f;
             font-size: 0.9em;
+            margin-bottom: 8px;
+        }
+
+        .item-effect {
+            color: #4caf50;
+            font-size: 0.8em;
+            border-top: 1px solid rgba(76, 175, 80, 0.3);
+            padding-top: 5px;
+            margin-top: 5px;
         }
 
         /* 合成界面 */
@@ -752,6 +761,22 @@
                 story: '深入树林深处，你发现了一个被遗弃的营地。<br>这是仙家军撤退时留下的。里面还有一些食物...'
             },
             {
+                id: 'swamp',
+                name: '🏜️ 诡异沼泽',
+                description: '一片泥泞的沼泽地，散发着刺鼻的气味。<br>沼泽中充满了毒气和危险的生物。<br>这里有充足的水源，但也隐藏着未知的危险...',
+                encounters: ['沼泽毒蛙', '泥浆怪物'],
+                resources: ['water', 'herb', 'wood'],
+                story: '在沼泽中心，你发现了一口清水井。<br>这是一个宝贵的资源点，能补充大量的水...'
+            },
+            {
+                id: 'cooldog',
+                name: '🐕 酷犬山',
+                description: '一座陡峭的山峰，山上住着许多凶悍的猛兽。<br>这里的生物都异常凶残，但资源也极其丰富。<br>听说还有一只特别的怪物在这里活动...',
+                encounters: ['野生犬兽', '酷酷的狗'],
+                resources: ['meat', 'stone', 'iron'],
+                story: '在山顶，你遇见了一只体型巨大、毛发飘逸的酷酷的狗。<br>它似乎在守护什么东西...'
+            },
+            {
                 id: 'company',
                 name: '🏢 恶魔公司',
                 description: '一座诡异的现代建筑矗立在荒野中。<br>这是皱皮大王的据点，充满了邪恶的气息。<br>这里汇集了许多强大的怪物...',
@@ -786,15 +811,55 @@
         ];
 
         const items = {
-            food: { name: '食物', hunger: 30, thirst: 0 },
-            water: { name: '清水', hunger: 0, thirst: 40 },
-            meat: { name: '烤肉', hunger: 50, thirst: -10 },
-            herb: { name: '草药', hp: 30 },
-            potion: { name: '治疗药水', hp: 60 },
-            wood: { name: '木材', craftMaterial: true },
-            stone: { name: '石头', craftMaterial: true },
-            iron: { name: '铁矿', craftMaterial: true },
-            soul_fragment: { name: '灵魂碎片', special: true, description: '皱皮大王的力量来源之一' }
+            food: { 
+                name: '食物', 
+                hunger: 30, 
+                thirst: 0,
+                effect: '恢复30饱食度'
+            },
+            water: { 
+                name: '清水', 
+                hunger: 0, 
+                thirst: 40,
+                effect: '恢复40饥渴度'
+            },
+            meat: { 
+                name: '烤肉', 
+                hunger: 50, 
+                thirst: -10,
+                effect: '恢复50饱食度，减少10饥渴度'
+            },
+            herb: { 
+                name: '草药', 
+                hp: 30,
+                effect: '恢复30生命值'
+            },
+            potion: { 
+                name: '治疗药水', 
+                hp: 60,
+                effect: '恢复60生命值'
+            },
+            wood: { 
+                name: '木材', 
+                craftMaterial: true,
+                effect: '合成材料'
+            },
+            stone: { 
+                name: '石头', 
+                craftMaterial: true,
+                effect: '合成材料'
+            },
+            iron: { 
+                name: '铁矿', 
+                craftMaterial: true,
+                effect: '合成材料'
+            },
+            soul_fragment: { 
+                name: '灵魂碎片', 
+                special: true, 
+                description: '皱皮大王的力量来源之一',
+                effect: '合成传奇武器'
+            }
         };
 
         const recipes = [
@@ -847,6 +912,10 @@
             '变异野狼': { hp: 60, attack: 12, defense: 5, reward: ['meat', 'wood', 'herb'], location: 'forest' },
             '妖树精灵': { hp: 70, attack: 10, defense: 8, reward: ['herb', 'potion'], location: 'forest' },
             '废墟幽灵': { hp: 50, attack: 14, defense: 4, reward: ['herb', 'stone'], location: 'ruins' },
+            '沼泽毒蛙': { hp: 55, attack: 11, defense: 6, reward: ['water', 'herb'], location: 'swamp' },
+            '泥浆怪物': { hp: 80, attack: 13, defense: 7, reward: ['water', 'stone', 'herb'], location: 'swamp' },
+            '野生犬兽': { hp: 75, attack: 14, defense: 6, reward: ['meat', 'stone'], location: 'cooldog' },
+            '酷酷的狗': { hp: 150, attack: 25, defense: 15, reward: ['meat', 'iron', 'soul_fragment'], location: 'cooldog', boss: true },
             '公司员工': { hp: 60, attack: 12, defense: 6, reward: ['iron', 'stone', 'potion'], location: 'company' },
             '妖怪主管': { hp: 100, attack: 18, defense: 10, reward: ['iron', 'soul_fragment'], location: 'company' },
             '邪灵保安': { hp: 80, attack: 15, defense: 8, reward: ['stone', 'potion'], location: 'company' },
@@ -896,7 +965,8 @@
             bossDefeated: false,
             visitedLocations: new Set(),
             storyProgress: 0,
-            savedAlly: false
+            savedAlly: false,
+            defeatedCoolDog: false
         };
 
         let attributePoints = 10;
@@ -1078,6 +1148,16 @@
                     ${location.story}
                 </div>`);
                 gameState.storyProgress = 2;
+            } else if (locationId === 'swamp') {
+                addGameLog(`<div class="event-dialog">
+                    <div class="event-title">💧 沼泽发现</div>
+                    ${location.story}
+                </div>`);
+            } else if (locationId === 'cooldog' && !gameState.defeatedCoolDog) {
+                addGameLog(`<div class="event-dialog">
+                    <div class="event-title">🐕 神秘怪物</div>
+                    ${location.story}
+                </div>`);
             }
             
             // 消耗资源
@@ -1186,6 +1266,7 @@
                     div.innerHTML = `
                         <div class="item-name">${item.name}</div>
                         <div class="item-count">x${gameState.inventory[itemId]}</div>
+                        <div class="item-effect">${item.effect}</div>
                     `;
                     inventoryList.appendChild(div);
                 }
@@ -1218,15 +1299,17 @@
                 used = true;
             }
             
-            if (item.hunger) {
+            if (item.hunger && item.hunger > 0) {
                 gameState.player.hunger = Math.min(gameState.player.maxHunger, gameState.player.hunger + item.hunger);
-                message = `使用了 ${item.name}，恢复了饱食度`;
+                if (message) message += '，';
+                message += `恢复了${item.hunger}饱食度`;
                 used = true;
             }
             
-            if (item.thirst) {
+            if (item.thirst && item.thirst > 0) {
                 gameState.player.thirst = Math.min(gameState.player.maxThirst, gameState.player.thirst + item.thirst);
-                message = `使用了 ${item.name}，恢复了饥渴度`;
+                if (message) message += '，';
+                message += `恢复了${item.thirst}饥渴度`;
                 used = true;
             }
             
@@ -1373,7 +1456,17 @@
             document.getElementById('enemy-hp').textContent = `${enemy.hp}/${enemy.maxHp}`;
             
             const battleLog = document.getElementById('battle-log');
-            battleLog.innerHTML = `<p>在 ${location.name} 中，你遭遇了 ${enemyName}！</p>`;
+            
+            // 特殊战斗描述
+            if (enemyName === '酷酷的狗') {
+                battleLog.innerHTML = `
+                    <p>你在酷犬山的山顶遇到了一只体型巨大的怪物！</p>
+                    <p>它有着飘逸的毛发，酷炫的外形，正是传说中的"酷酷的狗"！</p>
+                    <p class="damage">🐕 酷酷的狗发出了一声震天的嚎叫："敢入侵我的领地？尝尝我的怒火！"</p>
+                `;
+            } else {
+                battleLog.innerHTML = `<p>在 ${location.name} 中，你遭遇了 ${enemyName}！</p>`;
+            }
         }
 
         // 开始Boss战斗
@@ -1434,6 +1527,17 @@
                     setTimeout(() => {
                         gameOver(true);
                     }, 2000);
+                } else if (enemy.name === '酷酷的狗') {
+                    gameState.defeatedCoolDog = true;
+                    enemy.reward.forEach(itemId => {
+                        const amount = Math.floor(Math.random() * 2) + 1;
+                        addToInventory(itemId, amount);
+                        battleLog.innerHTML += `<p class="heal">获得 ${items[itemId].name} x${amount}</p>`;
+                    });
+                    battleLog.innerHTML += `<p class="heal">💎 酷酷的狗掉落了宝贵的灵魂碎片！</p>`;
+                    setTimeout(() => {
+                        endBattle();
+                    }, 2000);
                 } else {
                     enemy.reward.forEach(itemId => {
                         const amount = Math.floor(Math.random() * 2) + 1;
@@ -1459,6 +1563,9 @@
             if (enemy.name === '皱皮大王' && Math.random() < 0.3) {
                 enemyDamage = Math.floor(enemyDamage * 2);
                 battleLog.innerHTML += `<p class="damage">🌑 皱皮大王使用了邪恶能量，造成 ${enemyDamage} 点伤害！</p>`;
+            } else if (enemy.name === '酷酷的狗' && Math.random() < 0.25) {
+                enemyDamage = Math.floor(enemyDamage * 1.8);
+                battleLog.innerHTML += `<p class="damage">🐕 酷酷的狗展现出了它的酷炫力量，造成 ${enemyDamage} 点伤害！</p>`;
             }
             
             // 刘世鹏特殊能力
@@ -1634,6 +1741,7 @@
                         <p>访问地点: ${gameState.visitedLocations.size} 个</p>
                         <p>最终攻击力: ${gameState.player.baseAttack + gameState.player.bonusAttack}</p>
                         <p>最终防御力: ${gameState.player.baseDefense + gameState.player.bonusDefense}</p>
+                        <p>击败酷酷的狗: ${gameState.defeatedCoolDog ? '是' : '否'}</p>
                     </div>
                     <button class="btn btn-primary" onclick="location.reload()">重新开始</button>
                 `;
