@@ -686,6 +686,44 @@
             min-width: 50px;
         }
 
+        /* ✅ 调试按钮 - 分离为两个按钮 */
+        .debug-control {
+            position: fixed;
+            bottom: clamp(10px, 2vw, 20px);
+            right: clamp(10px, 2vw, 20px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .debug-btn {
+            background: rgba(156, 39, 176, 0.8);
+            color: white;
+            border: none;
+            padding: clamp(10px, 2vw, 12px) clamp(15px, 3vw, 20px);
+            border-radius: 8px;
+            font-size: clamp(0.75em, 1.2vw, 0.9em);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .debug-btn:hover {
+            background: rgba(156, 39, 176, 1);
+            transform: scale(1.05);
+        }
+
+        .debug-btn-map {
+            background: rgba(33, 150, 243, 0.8);
+        }
+
+        .debug-btn-map:hover {
+            background: rgba(33, 150, 243, 1);
+        }
+
         /* 提示框 */
         .hint-box {
             background: rgba(255, 152, 0, 0.1);
@@ -743,6 +781,12 @@
             .actions {
                 grid-template-columns: 1fr;
             }
+
+            .debug-btn {
+                min-width: 90px;
+                font-size: 0.8em;
+                padding: 8px 10px;
+            }
         }
 
         /* 平板适配 */
@@ -762,6 +806,12 @@
     <div class="music-control">
         <button class="music-btn" id="music-btn" onclick="toggleMusic()">🔊</button>
         <div class="music-status" id="music-status">音乐开启</div>
+    </div>
+
+    <!-- ✅ 调试按钮 - 分离为两个按钮 -->
+    <div class="debug-control">
+        <button class="debug-btn debug-btn-map" onclick="unlockAllMaps()">🗺️ 解锁地图</button>
+        <button class="debug-btn" onclick="addAllResources()">📦 获得物资</button>
     </div>
 
     <div class="container">
@@ -961,13 +1011,13 @@
     </div>
 
     <!-- 音频元素 -->
-    <audio id="main-music" crossorigin="anonymous" preload="auto">
+    <audio id="main-music" crossorigin="anonymous" preload="auto" loop>
         <source src="https://raw.githubusercontent.com/rruixi/xianadventure/refs/heads/main/main.mp3" type="audio/mpeg">
     </audio>
-    <audio id="normal-music" crossorigin="anonymous" preload="auto">
+    <audio id="normal-music" crossorigin="anonymous" preload="auto" loop>
         <source src="https://raw.githubusercontent.com/rruixi/xianadventure/refs/heads/main/normal.mp3" type="audio/mpeg">
     </audio>
-    <audio id="fight-music" crossorigin="anonymous" preload="auto">
+    <audio id="fight-music" crossorigin="anonymous" preload="auto" loop>
         <source src="https://raw.githubusercontent.com/rruixi/xianadventure/refs/heads/main/fight.mp3" type="audio/mpeg">
     </audio>
     <audio id="click-sound">
@@ -1013,6 +1063,7 @@
                 [mainMusic, normalMusic, fightMusic].forEach(audio => {
                     audio.muted = false;
                     audio.volume = 0.5;
+                    audio.loop = true;
                 });
                 playMusic(currentMusic);
             }
@@ -1085,7 +1136,7 @@
             }
         }
 
-        // ✅ 怪物血量和经验上调
+        // 怪物血量和经验上调
         const enemies = {
             '野狼': { hp: 80, attack: 8, defense: 3, reward: ['food', 'wood'], exp: 50 },
             '废墟幽灵': { hp: 100, attack: 14, defense: 4, reward: ['herb', 'stone'], exp: 65 },
@@ -1104,7 +1155,19 @@
             '麻辣仙人': { hp: 170, attack: 14, defense: 9, reward: ['herb', 'potion'], exp: 150 }
         };
 
-        // ✅ 等级经验表调整
+        // Boss敌人定义
+        const bossEnemy = {
+            name: '皱皮大王',
+            hp: 1500,
+            maxHp: 1500,
+            attack: 35,
+            defense: 25,
+            specialAttack: true,
+            exp: 1000,
+            boss: true
+        };
+
+        // 等级经验表调整
         const levelExpTable = [0, 100, 200, 200, 300, 400, 500, 500];
 
         const characters = [
@@ -1180,6 +1243,7 @@
             }
         ];
 
+        // 修改最后两关的解锁条件
         const locations = [
             {
                 id: 'ruins',
@@ -1247,18 +1311,18 @@
                 description: '一座古老的神庙被岁月侵蚀。这里曾经是人类求神的地方，现在沦为了妖怪的巢穴。',
                 encounters: ['档卫兵', '麻辣仙人'],
                 resources: ['potion', 'herb', 'wood'],
-                unlockCondition: { type: 'power', value: 150 },
-                unlockHint: '需要总战力≥150',
+                unlockCondition: { type: 'attack', value: 150 },
+                unlockHint: '需要攻击力≥150',
                 storyOnEnter: '在神庙的祭坛上，你发现了削弱皱皮大王的古老仪式...'
             },
             {
                 id: 'fortress',
                 name: '👑 永夜堡垒',
-                description: '皱皮大王的最终据点！这座堡垒充满了绝望的黑暗力量。只有做好充足准备的人才能在这里活下来...',
-                encounters: ['皱皮大王'],
+                description: '皱皮大王的最终据点！这座堡垒充满了绝望的黑暗力量。只有做好充足准备的人才能在这里活下来...这里是最终的战斗地点！',
+                encounters: ['boss'],
                 resources: [],
-                unlockCondition: { type: 'power', value: 200 },
-                unlockHint: '需要总战力≥200',
+                unlockCondition: { type: 'attack', value: 200 },
+                unlockHint: '需要攻击力≥200',
                 storyOnEnter: '这就是复仇的终点...你的宿敌就在前方！'
             }
         ];
@@ -1360,16 +1424,6 @@
             }
         ];
 
-        const bossEnemy = {
-            name: '皱皮大王',
-            hp: 1500,
-            maxHp: 1500,
-            attack: 35,
-            defense: 25,
-            specialAttack: true,
-            exp: 1000
-        };
-
         let gameState = {
             selectedCharacter: null,
             currentLocation: 'ruins',
@@ -1411,6 +1465,39 @@
         };
 
         let attributePoints = 10;
+
+        // ✅ 分离的调试函数1：解锁所有地图
+        function unlockAllMaps() {
+            activateAudioOnUserInteraction();
+            playClickSound();
+            // 解锁所有地图
+            for (let i = 0; i < locations.length; i++) {
+                gameState.unlockedLocations.add(locations[i].id);
+            }
+            // 刷新显示
+            if (document.getElementById('game-screen').classList.contains('active')) {
+                initLocationButtons();
+                addGameLog('<div class="heal" style="font-size: 1.1em; padding: 12px; background: rgba(33, 150, 243, 0.3); border-radius: 8px; margin: 10px 0;">🗺️ 已解锁所有地图！</div>');
+                updateProgressDisplay();
+            }
+            alert('✅ 所有地图已解锁！');
+        }
+
+        // ✅ 分离的调试函数2：获得所有物资
+        function addAllResources() {
+            activateAudioOnUserInteraction();
+            playClickSound();
+            // 设置所有物资为999
+            for (let itemId in items) {
+                gameState.inventory[itemId] = 999;
+            }
+            // 刷新显示
+            if (document.getElementById('game-screen').classList.contains('active')) {
+                addGameLog('<div class="heal" style="font-size: 1.1em; padding: 12px; background: rgba(156, 39, 176, 0.3); border-radius: 8px; margin: 10px 0;">📦 获得所有物资999个！</div>');
+                updateStatusBar();
+            }
+            alert('✅ 所有物资已设为999！');
+        }
 
         function initCharacterSelection() {
             activateAudioOnUserInteraction();
@@ -1571,6 +1658,10 @@
             const condition = location.unlockCondition;
             if (condition.type === 'start') return true;
             if (condition.type === 'level') return gameState.player.level >= condition.value;
+            if (condition.type === 'attack') {
+                const totalAttack = gameState.player.baseAttack + gameState.player.bonusAttack;
+                return totalAttack >= condition.value;
+            }
             if (condition.type === 'power') {
                 const totalPower = gameState.player.baseAttack + gameState.player.bonusAttack + gameState.player.baseDefense + gameState.player.bonusDefense;
                 return totalPower >= condition.value;
@@ -1583,7 +1674,7 @@
             const nav = document.getElementById('location-nav');
             nav.innerHTML = '';
             locations.forEach(loc => {
-                const isUnlocked = checkLocationUnlock(loc);
+                const isUnlocked = checkLocationUnlock(loc) || gameState.unlockedLocations.has(loc.id);
                 const btn = document.createElement('button');
                 btn.className = 'location-btn';
                 if (!isUnlocked) {
@@ -1705,6 +1796,13 @@
             updateLocationDisplay();
             initLocationButtons();
             checkSurvival();
+            
+            if (locationId === 'fortress') {
+                addGameLog('<div style="background: rgba(255, 50, 50, 0.2); padding: 15px; border-left: 4px solid #f44336; border-radius: 5px; margin: 10px 0; font-size: 1.1em; color: #ff6b6b;">⚠️ 皱皮大王感知到了你的存在！战斗即将开始！</div>');
+                setTimeout(() => {
+                    startBossBattle();
+                }, 2000);
+            }
         }
 
         function updateLocationDisplay() {
@@ -1747,11 +1845,13 @@
             const rand = Math.random();
             if (rand < 0.4) {
                 const resources = location.resources;
-                const foundResource = resources[Math.floor(Math.random() * resources.length)];
-                let amount = Math.floor(Math.random() * 3) + 1;
-                if (gameState.player.name === '河北小杨') amount = Math.floor(amount * 1.5);
-                addToInventory(foundResource, amount);
-                addGameLog(`🎉 探索成功！你发现了 ${items[foundResource].name} x${amount}`);
+                if (resources && resources.length > 0) {
+                    const foundResource = resources[Math.floor(Math.random() * resources.length)];
+                    let amount = Math.floor(Math.random() * 3) + 1;
+                    if (gameState.player.name === '河北小杨') amount = Math.floor(amount * 1.5);
+                    addToInventory(foundResource, amount);
+                    addGameLog(`🎉 探索成功！你发现了 ${items[foundResource].name} x${amount}`);
+                }
             } else if (rand < 0.7) {
                 startBattle(location);
             } else {
@@ -1888,6 +1988,7 @@
             }
             gainExp(20);
             updateStatusBar();
+            checkAndUnlockLocations();
             showCraft();
         }
 
@@ -1907,6 +2008,12 @@
         function startBattle(location) {
             const enemyNames = location.encounters;
             const enemyName = enemyNames[Math.floor(Math.random() * enemyNames.length)];
+            
+            if (enemyName === 'boss') {
+                startBossBattle();
+                return;
+            }
+            
             const enemy = JSON.parse(JSON.stringify(enemies[enemyName]));
             enemy.maxHp = enemy.hp;
             enemy.name = enemyName;
@@ -1935,16 +2042,16 @@
         }
 
         function startBossBattle() {
-            gameState.currentEnemy = JSON.parse(JSON.stringify(bossEnemy));
-            gameState.currentEnemy.name = '皱皮大王';
+            const boss = JSON.parse(JSON.stringify(bossEnemy));
+            gameState.currentEnemy = boss;
             gameState.inBattle = true;
             gameState.battleEnded = false;
             gameState.player.isZhenJi = false;
             document.getElementById('game-screen').classList.remove('active');
             document.getElementById('battle-screen').classList.add('active');
             playMusic('fight');
-            document.getElementById('enemy-name').textContent = bossEnemy.name;
-            document.getElementById('enemy-hp').textContent = `${bossEnemy.hp}/${bossEnemy.maxHp}`;
+            document.getElementById('enemy-name').textContent = boss.name;
+            document.getElementById('enemy-hp').textContent = `${boss.hp}/${boss.maxHp}`;
             const battleLog = document.getElementById('battle-log');
             battleLog.innerHTML = `
                 <p>你踏入了永夜堡垒，刺骨的寒风迎面吹来。</p>
@@ -1964,8 +2071,11 @@
             const enemy = gameState.currentEnemy;
             const player = gameState.player;
             const battleLog = document.getElementById('battle-log');
-            let playerDamage = player.baseAttack + player.bonusAttack + player.attackBoost - enemy.defense;
-            playerDamage = Math.max(1, playerDamage);
+            
+            let basePlayerDamage = player.baseAttack + player.bonusAttack + player.attackBoost;
+            let playerDamage = basePlayerDamage - enemy.defense;
+            playerDamage = Math.max(Math.floor(basePlayerDamage * 0.2), playerDamage);
+            
             if (player.name === '诸天未来仙帝') playerDamage = Math.floor(playerDamage * 1.2);
             if (player.name === '盘圣' && Math.random() < 0.35) {
                 playerDamage *= 2;
@@ -1979,7 +2089,9 @@
             } else {
                 battleLog.innerHTML += `<p class="damage">⚔️ 你攻击了 ${enemy.name}，造成 ${playerDamage} 点伤害</p>`;
             }
+            
             enemy.hp -= playerDamage;
+            
             if (enemy.hp <= 0) {
                 enemy.hp = 0;
                 gameState.battleEnded = true;
@@ -1992,25 +2104,31 @@
                 document.getElementById('flee-btn').disabled = true;
                 if (enemy.name === '皱皮大王') {
                     gameState.bossDefeated = true;
+                    gameState.defeatedBosses.add('皱皮大王');
                     setTimeout(() => gameOver(true), 2000);
                 } else {
                     if (enemy.boss) {
                         gameState.defeatedBosses.add(enemy.name);
                         battleLog.innerHTML += `<p class="heal">⭐ 击败了强大的Boss！</p>`;
                     }
-                    enemy.reward.forEach(itemId => {
-                        const amount = Math.floor(Math.random() * 2) + 1;
-                        addToInventory(itemId, amount);
-                        battleLog.innerHTML += `<p class="heal">获得 ${items[itemId].name} x${amount}</p>`;
-                    });
+                    if (enemy.reward) {
+                        enemy.reward.forEach(itemId => {
+                            const amount = Math.floor(Math.random() * 2) + 1;
+                            addToInventory(itemId, amount);
+                            battleLog.innerHTML += `<p class="heal">获得 ${items[itemId].name} x${amount}</p>`;
+                        });
+                    }
                     setTimeout(() => endBattle(), 2000);
                 }
                 document.getElementById('enemy-hp').textContent = `0/${enemy.maxHp}`;
                 battleLog.scrollTop = battleLog.scrollHeight;
                 return;
             }
-            let enemyDamage = enemy.attack - (player.baseDefense + player.bonusDefense);
-            enemyDamage = Math.max(1, enemyDamage);
+            
+            let baseEnemyDamage = enemy.attack;
+            let enemyDamage = baseEnemyDamage - (player.baseDefense + player.bonusDefense);
+            enemyDamage = Math.max(Math.floor(baseEnemyDamage * 0.2), enemyDamage);
+            
             if (enemy.name === '皱皮大王' && Math.random() < 0.3) {
                 enemyDamage = Math.floor(enemyDamage * 2);
                 battleLog.innerHTML += `<p class="damage">🌑 皱皮大王使用了邪恶能量，造成 ${enemyDamage} 点伤害！</p>`;
@@ -2018,23 +2136,26 @@
                 enemyDamage = Math.floor(enemyDamage * 1.8);
                 battleLog.innerHTML += `<p class="damage">🐕 酷酷的狗展现出了它的酷炫力量，造成 ${enemyDamage} 点伤害！</p>`;
             }
+            
             if (player.name === '刘世鹏') enemyDamage = Math.floor(enemyDamage * 0.7);
-            const actualDamage = enemyDamage;
+            
             const dodgeChance = (player.agility || 0) / 100 + (player.name === '白狐' ? 0.25 : 0);
             if (Math.random() < dodgeChance) {
                 battleLog.innerHTML += `<p class="heal">✨ 你灵巧地闪避了攻击！</p>`;
             } else {
-                player.hp -= actualDamage;
-                if (player.name === '神盾' && actualDamage > 0) {
+                player.hp -= enemyDamage;
+                if (player.name === '神盾' && enemyDamage > 0) {
                     const boost = Math.floor((player.baseAttack + player.bonusAttack) * 0.05);
                     player.attackBoost += boost;
                     battleLog.innerHTML += `<p class="info">🛡️ 受伤激发潜能！攻击力提升 ${boost} 点（总计：${player.baseAttack + player.bonusAttack + player.attackBoost}）</p>`;
                 }
-                battleLog.innerHTML += `<p class="damage">💥 ${enemy.name} 反击，造成 ${actualDamage} 点伤害</p>`;
+                battleLog.innerHTML += `<p class="damage">💥 ${enemy.name} 反击，造成 ${enemyDamage} 点伤害</p>`;
             }
+            
             document.getElementById('enemy-hp').textContent = `${enemy.hp}/${enemy.maxHp}`;
             updateStatusBar();
             battleLog.scrollTop = battleLog.scrollHeight;
+            
             if (player.hp <= 0) {
                 gameState.battleEnded = true;
                 document.getElementById('attack-btn').disabled = true;
@@ -2055,8 +2176,11 @@
                     const battleLog = document.getElementById('battle-log');
                     battleLog.innerHTML += `<p class="heal">💊 使用了 ${items[itemId].name}</p>`;
                     const enemy = gameState.currentEnemy;
-                    let enemyDamage = enemy.attack - (gameState.player.baseDefense + gameState.player.bonusDefense);
-                    enemyDamage = Math.max(1, enemyDamage);
+                    
+                    let baseEnemyDamage = enemy.attack;
+                    let enemyDamage = baseEnemyDamage - (gameState.player.baseDefense + gameState.player.bonusDefense);
+                    enemyDamage = Math.max(Math.floor(baseEnemyDamage * 0.2), enemyDamage);
+                    
                     if (gameState.player.name === '刘世鹏') enemyDamage = Math.floor(enemyDamage * 0.7);
                     const dodgeChance = (gameState.player.agility || 0) / 100 + (gameState.player.name === '白狐' ? 0.25 : 0);
                     if (Math.random() < dodgeChance) {
@@ -2100,8 +2224,11 @@
                 const battleLog = document.getElementById('battle-log');
                 battleLog.innerHTML += `<p class="damage">❌ 逃跑失败！</p>`;
                 const enemy = gameState.currentEnemy;
-                let enemyDamage = enemy.attack - (gameState.player.baseDefense + gameState.player.bonusDefense);
-                enemyDamage = Math.max(1, enemyDamage);
+                
+                let baseEnemyDamage = enemy.attack;
+                let enemyDamage = baseEnemyDamage - (gameState.player.baseDefense + gameState.player.bonusDefense);
+                enemyDamage = Math.max(Math.floor(baseEnemyDamage * 0.2), enemyDamage);
+                
                 if (gameState.player.name === '刘世鹏') enemyDamage = Math.floor(enemyDamage * 0.7);
                 gameState.player.hp -= enemyDamage;
                 if (gameState.player.name === '神盾' && enemyDamage > 0) {
