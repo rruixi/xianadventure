@@ -16,22 +16,22 @@
             background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
             color: #eee;
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             background: rgba(30, 30, 60, 0.9);
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px;
             box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
         }
 
         h1 {
             text-align: center;
             color: #ffd54f;
-            font-size: 2.5em;
+            font-size: clamp(1.5em, 5vw, 2.5em);
             margin-bottom: 20px;
             text-shadow: 2px 2px 10px rgba(255, 213, 79, 0.5);
         }
@@ -47,21 +47,22 @@
         /* 开场屏幕 */
         .story-intro {
             text-align: center;
-            line-height: 2;
+            line-height: 1.8;
             margin-bottom: 30px;
+            font-size: clamp(0.85em, 2vw, 1.1em);
         }
 
         /* 角色选择 */
         .character-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 90vw, 280px), 1fr));
+            gap: clamp(10px, 3vw, 20px);
             margin: 30px 0;
         }
 
         .character-card {
             background: rgba(50, 50, 80, 0.8);
-            padding: 20px;
+            padding: clamp(15px, 3vw, 20px);
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
@@ -83,19 +84,19 @@
         }
 
         .character-name {
-            font-size: 1.3em;
+            font-size: clamp(1em, 2.5vw, 1.3em);
             color: #ffd54f;
             margin-bottom: 10px;
         }
 
         .character-desc {
-            font-size: 0.9em;
+            font-size: clamp(0.8em, 1.5vw, 0.9em);
             color: #bbb;
             margin-bottom: 10px;
         }
 
         .character-stats {
-            font-size: 0.85em;
+            font-size: clamp(0.75em, 1.2vw, 0.85em);
             color: #64b5f6;
             margin-bottom: 10px;
         }
@@ -103,7 +104,7 @@
         .character-ability {
             color: #4caf50;
             margin-top: auto;
-            font-size: 0.85em;
+            font-size: clamp(0.75em, 1.2vw, 0.85em);
             padding-top: 10px;
             border-top: 1px solid rgba(76, 175, 80, 0.3);
         }
@@ -111,7 +112,7 @@
         /* 属性加点 */
         .attribute-panel {
             background: rgba(50, 50, 80, 0.6);
-            padding: 20px;
+            padding: clamp(15px, 3vw, 20px);
             border-radius: 10px;
             margin: 20px 0;
         }
@@ -120,25 +121,27 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin: 15px 0;
-            padding: 10px;
+            margin: clamp(10px, 2vw, 15px) 0;
+            padding: clamp(8px, 1vw, 10px);
             background: rgba(30, 30, 50, 0.5);
             border-radius: 5px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .attribute-controls {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: clamp(10px, 2vw, 15px);
         }
 
         .attr-btn {
-            width: 35px;
-            height: 35px;
+            width: clamp(30px, 6vw, 35px);
+            height: clamp(30px, 6vw, 35px);
             border: none;
             background: #64b5f6;
             color: white;
-            font-size: 1.2em;
+            font-size: clamp(0.9em, 2vw, 1.2em);
             border-radius: 5px;
             cursor: pointer;
             transition: all 0.2s;
@@ -156,7 +159,7 @@
         }
 
         .attr-value {
-            font-size: 1.2em;
+            font-size: clamp(1em, 2vw, 1.2em);
             font-weight: bold;
             color: #ffd54f;
             min-width: 30px;
@@ -165,7 +168,7 @@
 
         .points-remaining {
             text-align: center;
-            font-size: 1.3em;
+            font-size: clamp(1.1em, 2.5vw, 1.3em);
             color: #4caf50;
             margin: 20px 0;
         }
@@ -180,6 +183,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.6);
+            overflow-y: auto;
         }
 
         .modal.active {
@@ -190,23 +194,24 @@
 
         .modal-content {
             background: rgba(30, 30, 60, 0.95);
-            padding: 30px;
+            padding: clamp(20px, 5vw, 30px);
             border-radius: 15px;
             text-align: center;
-            max-width: 400px;
+            max-width: min(90vw, 500px);
             border: 2px solid #ffd54f;
             box-shadow: 0 0 30px rgba(255, 213, 79, 0.5);
+            margin: 20px;
         }
 
         .modal-title {
-            font-size: 1.5em;
+            font-size: clamp(1.3em, 3vw, 1.5em);
             color: #ffd54f;
             margin-bottom: 15px;
             font-weight: bold;
         }
 
         .modal-text {
-            font-size: 1.1em;
+            font-size: clamp(0.9em, 2vw, 1.1em);
             color: #64b5f6;
             margin-bottom: 20px;
             line-height: 1.6;
@@ -214,15 +219,16 @@
 
         .modal-buttons {
             display: flex;
-            gap: 15px;
+            gap: clamp(10px, 2vw, 15px);
             justify-content: center;
+            flex-wrap: wrap;
         }
 
         .modal-btn {
-            padding: 12px 30px;
+            padding: clamp(10px, 2vw, 12px) clamp(20px, 5vw, 30px);
             border: none;
             border-radius: 8px;
-            font-size: 1em;
+            font-size: clamp(0.9em, 2vw, 1em);
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s;
@@ -244,56 +250,101 @@
             position: relative;
         }
 
-        .modal-btn-reject:hover {
-            background: #da190b;
-        }
-
         /* 游戏主界面 */
         .game-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(15px, 3vw, 20px);
             margin-bottom: 20px;
-            padding: 15px;
+            padding: clamp(15px, 2vw, 20px);
             background: rgba(50, 50, 80, 0.6);
             border-radius: 8px;
-            flex-wrap: wrap;
+        }
+
+        @media (min-width: 768px) {
+            .game-header {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .character-info {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: clamp(15px, 3vw, 20px);
+            font-size: clamp(0.9em, 1.5vw, 1em);
         }
 
         .current-location {
             text-align: right;
             color: #ffd54f;
             font-weight: bold;
+            font-size: clamp(0.9em, 1.5vw, 1em);
+        }
+
+        .progress-info {
+            grid-column: 1 / -1;
+            padding-top: 15px;
+            border-top: 1px solid rgba(100, 181, 246, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            font-size: clamp(0.8em, 1.2vw, 0.9em);
+        }
+
+        .level-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: clamp(5px, 1vw, 8px) clamp(12px, 2vw, 15px);
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: clamp(0.85em, 1.5vw, 1em);
+        }
+
+        .exp-bar {
+            flex: 1;
+            min-width: 150px;
+            height: clamp(18px, 3vw, 20px);
+            background: rgba(30, 30, 50, 0.8);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .exp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(0.65em, 1vw, 0.8em);
+            font-weight: bold;
         }
 
         .status-bar {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(120px, 80vw, 150px), 1fr));
+            gap: clamp(10px, 2vw, 15px);
             margin-bottom: 25px;
         }
 
         .status-item {
             background: rgba(50, 50, 80, 0.8);
-            padding: 15px;
+            padding: clamp(12px, 2vw, 15px);
             border-radius: 8px;
             text-align: center;
+            font-size: clamp(0.8em, 1.5vw, 0.95em);
         }
 
         .status-label {
-            font-size: 0.9em;
+            font-size: clamp(0.75em, 1.2vw, 0.9em);
             color: #bbb;
             margin-bottom: 8px;
         }
 
         .status-value {
-            font-size: 1.3em;
+            font-size: clamp(1em, 2vw, 1.3em);
             font-weight: bold;
         }
 
@@ -306,16 +357,16 @@
         /* 地点导航 */
         .location-nav {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 80vw, 180px), 1fr));
+            gap: clamp(8px, 1.5vw, 12px);
             margin-bottom: 25px;
-            padding: 15px;
+            padding: clamp(12px, 2vw, 15px);
             background: rgba(50, 50, 80, 0.6);
             border-radius: 8px;
         }
 
         .location-btn {
-            padding: 12px;
+            padding: clamp(10px, 2vw, 12px);
             background: rgba(100, 181, 246, 0.3);
             border: 2px solid #64b5f6;
             color: #64b5f6;
@@ -323,9 +374,11 @@
             cursor: pointer;
             transition: all 0.3s;
             font-weight: bold;
+            font-size: clamp(0.8em, 1.5vw, 0.95em);
+            position: relative;
         }
 
-        .location-btn:hover {
+        .location-btn:hover:not(.locked) {
             background: rgba(100, 181, 246, 0.6);
             transform: translateY(-2px);
         }
@@ -335,34 +388,58 @@
             color: #1a1a2e;
         }
 
+        .location-btn.locked {
+            background: rgba(50, 50, 50, 0.5);
+            border-color: #555;
+            color: #777;
+            cursor: not-allowed;
+        }
+
+        .location-btn.locked::after {
+            content: '🔒';
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: clamp(0.8em, 1.2vw, 1em);
+        }
+
+        .unlock-hint {
+            font-size: clamp(0.65em, 1vw, 0.75em);
+            color: #ff9800;
+            margin-top: 3px;
+        }
+
         /* 游戏内容区 */
         .game-content {
             background: rgba(30, 30, 50, 0.7);
-            padding: 25px;
+            padding: clamp(15px, 3vw, 25px);
             border-radius: 10px;
             margin-bottom: 25px;
-            min-height: 300px;
+            min-height: 250px;
             line-height: 1.8;
             max-height: 500px;
             overflow-y: auto;
+            font-size: clamp(0.85em, 1.5vw, 1em);
         }
 
         /* 按钮区 */
         .actions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(clamp(140px, 80vw, 200px), 1fr));
+            gap: clamp(8px, 2vw, 15px);
             margin-top: 20px;
         }
 
         .btn {
-            padding: 15px 25px;
-            font-size: 1.1em;
+            padding: clamp(12px, 2vw, 15px) clamp(15px, 3vw, 25px);
+            font-size: clamp(0.85em, 1.5vw, 1.1em);
             border: none;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
             font-weight: bold;
+            white-space: nowrap;
         }
 
         .btn-primary {
@@ -413,22 +490,23 @@
             opacity: 0.6;
         }
 
-        /* 背包 */
+        /* 背pack */
         .inventory {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(clamp(120px, 80vw, 150px), 1fr));
+            gap: clamp(8px, 2vw, 10px);
             margin-top: 15px;
         }
 
         .item {
             background: rgba(50, 50, 80, 0.8);
-            padding: 12px;
+            padding: clamp(10px, 2vw, 12px);
             border-radius: 5px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
             border: 2px solid transparent;
+            font-size: clamp(0.8em, 1.2vw, 0.9em);
         }
 
         .item:hover {
@@ -443,13 +521,13 @@
 
         .item-count {
             color: #ffd54f;
-            font-size: 0.9em;
+            font-size: clamp(0.75em, 1vw, 0.9em);
             margin-bottom: 8px;
         }
 
         .item-effect {
             color: #4caf50;
-            font-size: 0.8em;
+            font-size: clamp(0.7em, 1vw, 0.8em);
             border-top: 1px solid rgba(76, 175, 80, 0.3);
             padding-top: 5px;
             margin-top: 5px;
@@ -458,65 +536,70 @@
         /* 合成界面 */
         .craft-recipes {
             display: grid;
-            gap: 15px;
+            gap: clamp(12px, 2vw, 15px);
             margin-top: 20px;
         }
 
         .recipe {
             background: rgba(50, 50, 80, 0.6);
-            padding: 15px;
+            padding: clamp(12px, 2vw, 15px);
             border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            font-size: clamp(0.8em, 1.2vw, 0.95em);
         }
 
         .recipe-info {
             flex: 1;
+            min-width: 200px;
         }
 
         .recipe-name {
-            font-size: 1.1em;
+            font-size: clamp(0.95em, 1.5vw, 1.1em);
             color: #ffd54f;
             margin-bottom: 5px;
         }
 
         .recipe-materials {
-            font-size: 0.9em;
+            font-size: clamp(0.8em, 1.2vw, 0.9em);
             color: #bbb;
         }
 
         /* 战斗界面 */
         .battle-scene {
             text-align: center;
-            padding: 20px;
+            padding: clamp(15px, 3vw, 20px);
         }
 
         .enemy-info {
             background: rgba(100, 30, 30, 0.6);
-            padding: 20px;
+            padding: clamp(15px, 3vw, 20px);
             border-radius: 10px;
-            margin: 20px 0;
+            margin: clamp(15px, 3vw, 20px) 0;
         }
 
         .enemy-name {
-            font-size: 1.5em;
+            font-size: clamp(1.2em, 3vw, 1.5em);
             color: #f44336;
             margin-bottom: 10px;
         }
 
         .battle-log {
             background: rgba(30, 30, 50, 0.8);
-            padding: 15px;
+            padding: clamp(12px, 2vw, 15px);
             border-radius: 8px;
-            margin: 20px 0;
+            margin: clamp(15px, 3vw, 20px) 0;
             max-height: 250px;
             overflow-y: auto;
             text-align: left;
+            font-size: clamp(0.8em, 1.2vw, 0.95em);
         }
 
         .battle-log p {
-            margin: 8px 0;
+            margin: clamp(6px, 1vw, 8px) 0;
             padding: 5px;
             border-left: 3px solid #64b5f6;
             padding-left: 10px;
@@ -537,12 +620,13 @@
         /* 结局画面 */
         .ending {
             text-align: center;
-            padding: 30px;
+            padding: clamp(20px, 5vw, 30px);
             line-height: 2;
+            font-size: clamp(0.9em, 1.5vw, 1.1em);
         }
 
         .ending h2 {
-            font-size: 2em;
+            font-size: clamp(1.5em, 4vw, 2em);
             margin-bottom: 20px;
         }
 
@@ -552,6 +636,65 @@
 
         .defeat {
             color: #f44336;
+        }
+
+        /* 音乐控制 */
+        .music-control {
+            position: fixed;
+            top: clamp(10px, 2vw, 20px);
+            right: clamp(10px, 2vw, 20px);
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .music-btn {
+            background: rgba(76, 175, 80, 0.8);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 50%;
+            width: clamp(45px, 8vw, 50px);
+            height: clamp(45px, 8vw, 50px);
+            font-size: clamp(1.2em, 2vw, 1.5em);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-btn:hover {
+            background: rgba(76, 175, 80, 1);
+            transform: scale(1.1);
+        }
+
+        .music-btn.muted {
+            background: rgba(244, 67, 54, 0.8);
+        }
+
+        .music-status {
+            font-size: clamp(0.7em, 1vw, 0.75em);
+            color: #4caf50;
+            text-align: center;
+            white-space: nowrap;
+            padding: clamp(3px, 1vw, 5px) clamp(8px, 1.5vw, 10px);
+            background: rgba(50, 50, 80, 0.8);
+            border-radius: 5px;
+            min-width: 50px;
+        }
+
+        /* 提示框 */
+        .hint-box {
+            background: rgba(255, 152, 0, 0.1);
+            border: 2px solid #ff9800;
+            border-radius: 8px;
+            padding: clamp(12px, 2vw, 15px);
+            margin: clamp(10px, 2vw, 15px) 0;
+            color: #ffb74d;
+            font-size: clamp(0.85em, 1.5vw, 1em);
         }
 
         /* 滚动条美化 */
@@ -572,16 +715,62 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #42a5f5;
         }
+
+        /* 手机特殊适配 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+                border-radius: 10px;
+            }
+
+            .btn {
+                padding: 12px 10px;
+                font-size: 0.9em;
+            }
+
+            .character-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .location-nav {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .status-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .actions {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 平板适配 */
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .character-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .location-nav {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- 音乐控制 -->
+    <div class="music-control">
+        <button class="music-btn" id="music-btn" onclick="toggleMusic()">🔊</button>
+        <div class="music-status" id="music-status">音乐开启</div>
+    </div>
+
     <div class="container">
         <h1>⚔️ 仙家军求生记 ⚔️</h1>
 
         <!-- 开场界面 -->
         <div id="intro-screen" class="game-screen active">
             <div class="story-intro">
-                <p style="margin-bottom: 20px; font-size: 1.1em;">
+                <p style="margin-bottom: 20px;">
                     曾经，仙庭的家园繁荣昌盛。但在一个月黑风高的夜晚，<br>
                     皱皮大王率领妖魔大军摧毁了仙家军的一切。<br>
                     <span style="color: #ffd54f;">无数同伴丧生，家园被夷为平地...</span><br>
@@ -589,7 +778,10 @@
                     <span style="color: #f44336;">你是唯一的幸存者。</span><br>
                     <span style="color: #ffd54f;">家园已毁，复仇之念燃烧在心间...</span>
                 </p>
-                <p style="color: #64b5f6; font-size: 0.95em;">选择你的角色，踏上复仇之旅</p>
+                <p style="color: #64b5f6; margin-bottom: 20px;">选择你的角色，踏上复仇之旅</p>
+                <p style="color: #ff9800;">
+                    💡 提示：手机用户请允许音频播放权限，可在音乐按钮处控制音乐开关
+                </p>
             </div>
 
             <div class="character-grid" id="character-list">
@@ -625,13 +817,23 @@
             <div class="game-header">
                 <div class="character-info">
                     <div>
-                        <div style="color: #bbb; font-size: 0.9em;">角色</div>
+                        <div style="color: #bbb;">角色</div>
                         <div style="color: #ffd54f; font-weight: bold;" id="character-name">诸天未来仙帝</div>
                     </div>
                 </div>
                 <div class="current-location">
-                    <div style="color: #bbb; font-size: 0.9em;">当前位置</div>
+                    <div style="color: #bbb;">当前位置</div>
                     <div id="location-display">✨ 仙家军遗迹</div>
+                </div>
+                <!-- 进度信息 -->
+                <div class="progress-info">
+                    <div class="level-badge" id="level-display">Lv.1</div>
+                    <div class="exp-bar">
+                        <div class="exp-fill" id="exp-fill" style="width: 0%">
+                            <span id="exp-text">0/300</span>
+                        </div>
+                    </div>
+                    <div style="color: #64b5f6;" id="unlock-progress">1/8 地图</div>
                 </div>
             </div>
 
@@ -661,7 +863,7 @@
 
             <!-- 地点导航 -->
             <div style="margin-bottom: 15px;">
-                <div style="color: #bbb; margin-bottom: 8px;">🗺️ 快速传送</div>
+                <div style="color: #bbb; margin-bottom: 8px;">🗺️ 地图导航</div>
                 <div class="location-nav" id="location-nav">
                     <!-- 地点按钮由JS生成 -->
                 </div>
@@ -675,11 +877,10 @@
 
             <!-- 操作按钮 -->
             <div class="actions" id="main-actions">
-                <button class="btn btn-info" onclick="explore()">🔍 探索当前地点</button>
+                <button class="btn btn-info" onclick="explore()">🔍 探索</button>
                 <button class="btn btn-warning" onclick="showInventory()">🎒 背包</button>
                 <button class="btn btn-info" onclick="showCraft()">🔨 合成</button>
                 <button class="btn btn-primary" onclick="rest()">😴 休息</button>
-                <button class="btn btn-danger" onclick="findBoss()">⚔️ 寻找皱皮大王</button>
             </div>
         </div>
 
@@ -717,7 +918,7 @@
                 </div>
                 <div class="actions">
                     <button class="btn btn-danger" onclick="attack()" id="attack-btn">⚔️ 攻击</button>
-                    <button class="btn btn-primary" onclick="useHealItem()" id="heal-btn">💊 使用治疗</button>
+                    <button class="btn btn-primary" onclick="useHealItem()" id="heal-btn">💊 治疗</button>
                     <button class="btn btn-warning" onclick="flee()" id="flee-btn">🏃 逃跑</button>
                 </div>
             </div>
@@ -746,8 +947,166 @@
         </div>
     </div>
 
+    <!-- 地图解锁弹窗 -->
+    <div id="unlock-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title">🎉 地图解锁</div>
+            <div class="modal-text" id="unlock-text">
+                <!-- 解锁信息由JS生成 -->
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-accept" onclick="closeUnlockModal()">好的</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 音频元素 -->
+    <audio id="main-music" crossorigin="anonymous" preload="auto">
+        <source src="https://raw.githubusercontent.com/rruixi/xianadventure/refs/heads/main/main.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="normal-music" crossorigin="anonymous" preload="auto">
+        <source src="https://raw.githubusercontent.com/rruixi/xianadventure/refs/heads/main/normal.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="fight-music" crossorigin="anonymous" preload="auto">
+        <source src="https://raw.githubusercontent.com/rruixi/xianadventure/refs/heads/main/fight.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="click-sound">
+        <source src="data:audio/wav;base64,UklGRiYAAABXQVZFZm10IBAAAAABAAEAQB8AAAB9AAACABAAZGF0YQIAAAAAAA==" type="audio/wav">
+    </audio>
+
     <script>
-        // 游戏数据
+        // 音乐系统
+        let audioContext = null;
+        let musicMuted = false;
+        let currentMusic = 'main';
+        let musicEnabled = true;
+        let hasUserInteracted = false;
+
+        function initAudioContext() {
+            if (!audioContext) {
+                try {
+                    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+                    audioContext = new AudioContext();
+                } catch(e) {
+                    console.log('AudioContext not supported');
+                }
+            }
+        }
+
+        function attemptPlay(audioElement) {
+            if (!musicEnabled) return;
+            const playPromise = audioElement.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    updateMusicStatus('音乐被阻止');
+                });
+            }
+        }
+
+        function activateAudioOnUserInteraction() {
+            if (!hasUserInteracted) {
+                hasUserInteracted = true;
+                initAudioContext();
+                const mainMusic = document.getElementById('main-music');
+                const normalMusic = document.getElementById('normal-music');
+                const fightMusic = document.getElementById('fight-music');
+                [mainMusic, normalMusic, fightMusic].forEach(audio => {
+                    audio.muted = false;
+                    audio.volume = 0.5;
+                });
+                playMusic(currentMusic);
+            }
+        }
+
+        function toggleMusic() {
+            const btn = document.getElementById('music-btn');
+            const mainMusic = document.getElementById('main-music');
+            const normalMusic = document.getElementById('normal-music');
+            const fightMusic = document.getElementById('fight-music');
+            musicMuted = !musicMuted;
+            if (musicMuted) {
+                mainMusic.pause();
+                normalMusic.pause();
+                fightMusic.pause();
+                btn.textContent = '🔇';
+                btn.classList.add('muted');
+                updateMusicStatus('关闭');
+            } else {
+                btn.classList.remove('muted');
+                btn.textContent = '🔊';
+                updateMusicStatus('开启');
+                playMusic(currentMusic);
+            }
+        }
+
+        function updateMusicStatus(text) {
+            document.getElementById('music-status').textContent = text;
+        }
+
+        function playMusic(type) {
+            if (musicMuted) return;
+            const mainMusic = document.getElementById('main-music');
+            const normalMusic = document.getElementById('normal-music');
+            const fightMusic = document.getElementById('fight-music');
+            mainMusic.volume = 0.5;
+            normalMusic.volume = 0.5;
+            fightMusic.volume = 0.5;
+            mainMusic.pause();
+            normalMusic.pause();
+            fightMusic.pause();
+            currentMusic = type;
+            switch(type) {
+                case 'main':
+                    mainMusic.currentTime = 0;
+                    attemptPlay(mainMusic);
+                    updateMusicStatus('主题');
+                    break;
+                case 'normal':
+                    normalMusic.currentTime = 0;
+                    attemptPlay(normalMusic);
+                    updateMusicStatus('进行');
+                    break;
+                case 'fight':
+                    fightMusic.currentTime = 0;
+                    attemptPlay(fightMusic);
+                    updateMusicStatus('战斗');
+                    break;
+            }
+        }
+
+        function playClickSound() {
+            if (musicMuted) return;
+            const sound = document.getElementById('click-sound');
+            sound.volume = 0.3;
+            sound.currentTime = 0;
+            const playPromise = sound.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {});
+            }
+        }
+
+        // ✅ 怪物血量和经验上调
+        const enemies = {
+            '野狼': { hp: 80, attack: 8, defense: 3, reward: ['food', 'wood'], exp: 50 },
+            '废墟幽灵': { hp: 100, attack: 14, defense: 4, reward: ['herb', 'stone'], exp: 65 },
+            '原老怨骑士': { hp: 140, attack: 12, defense: 8, reward: ['herb', 'potion'], exp: 100 },
+            '椰奶香香的': { hp: 120, attack: 10, defense: 5, reward: ['meat', 'wood', 'herb'], exp: 85 },
+            '小皱皮': { hp: 110, attack: 11, defense: 6, reward: ['water', 'herb'], exp: 85 },
+            '蛙蛙': { hp: 160, attack: 13, defense: 7, reward: ['water', 'stone', 'herb'], exp: 120 },
+            '路边一条': { hp: 150, attack: 14, defense: 6, reward: ['meat', 'stone'], exp: 110 },
+            '酷酷的狗': { hp: 300, attack: 25, defense: 15, reward: ['meat', 'iron', 'soul_fragment'], exp: 350, boss: true },
+            '公司员工': { hp: 120, attack: 12, defense: 6, reward: ['iron', 'stone', 'potion'], exp: 90 },
+            '恶魔': { hp: 200, attack: 18, defense: 10, reward: ['iron', 'soul_fragment'], exp: 180 },
+            '刘伟': { hp: 160, attack: 15, defense: 8, reward: ['stone', 'potion'], exp: 140 },
+            '猴子': { hp: 150, attack: 16, defense: 6, reward: ['iron', 'herb'], exp: 130 },
+            '米默': { hp: 240, attack: 20, defense: 12, reward: ['iron', 'soul_fragment', 'potion'], exp: 220 },
+            '档卫兵': { hp: 180, attack: 17, defense: 10, reward: ['potion', 'herb', 'soul_fragment'], exp: 160 },
+            '麻辣仙人': { hp: 170, attack: 14, defense: 9, reward: ['herb', 'potion'], exp: 150 }
+        };
+
+        // ✅ 等级经验表调整
+        const levelExpTable = [0, 100, 200, 200, 300, 400, 500, 500];
+
         const characters = [
             {
                 id: 'xiandi',
@@ -825,66 +1184,82 @@
             {
                 id: 'ruins',
                 name: '✨ 仙家军遗迹',
-                description: '曾经的家园现在只剩断壁残垣。<br>到处是被烧焦的痕迹，空气中弥漫着悲伤的灵气。<br>这里可能还有一些有用的资源...',
+                description: '曾经的家园现在只剩断壁残垣。到处是被烧焦的痕迹，空气中弥漫着悲伤的灵气。这里是你的起点，需要在这里积蓄力量。',
                 encounters: ['野狼', '废墟幽灵'],
-                resources: ['herb', 'wood', 'stone'],
-                story: '在废墟中，你发现了一块带有仙家军标记的碎片。<br>这勾起了你对那些失去的同伴的回忆...'
+                resources: ['herb', 'wood', 'stone', 'water'],
+                unlockCondition: { type: 'start', value: true },
+                unlockHint: '起始地点',
+                storyOnEnter: '这里曾是你的家园...你发誓要为所有死去的同伴复仇！'
             },
             {
                 id: 'forest',
-                name: '🌲 诡异树林',
-                description: '这片树林被妖气污染，树木扭曲变形。<br>可以听到奇异的声音在林间回荡。<br>这里可能隐藏着变异的妖兽...',
-                encounters: ['变异野狼', '妖树精灵'],
+                name: '🌲 原老院',
+                description: '这片地方被妖气污染，资源丰富但危险重重。可以听到奇异的声音在林间回荡。',
+                encounters: ['原老怨骑士', '椰奶香香的'],
                 resources: ['wood', 'herb', 'meat'],
-                story: '深入树林深处，你发现了一个被遗弃的营地。<br>这是仙家军撤退时留下的。里面还有一些食物...'
+                unlockCondition: { type: 'level', value: 2 },
+                unlockHint: '需要Lv.2',
+                storyOnEnter: '你来到了原老院，这里曾是仙家军的训练场，如今被妖气侵蚀...'
             },
             {
                 id: 'swamp',
                 name: '🏜️ 诡异沼泽',
-                description: '一片泥泞的沼泽地，散发着刺鼻的气味。<br>沼泽中充满了毒气和危险的生物。<br>这里有充足的水源，但也隐藏着未知的危险...',
-                encounters: ['沼泽毒蛙', '泥浆怪物'],
+                description: '一片泥泞的沼泽地，散发着刺鼻的气味。沼泽中充满了毒气和危险的生物，但有充足的水源。',
+                encounters: ['小皱皮', '蛙蛙'],
                 resources: ['water', 'herb', 'wood'],
-                story: '在沼泽中心，你发现了一口清水井。<br>这是一个宝贵的资源点，能补充大量的水...'
+                unlockCondition: { type: 'level', value: 3 },
+                unlockHint: '需要Lv.3',
+                storyOnEnter: '在沼泽中，你发现了一些关于皱皮大王行踪的线索...'
             },
             {
                 id: 'cooldog',
                 name: '🐕 酷犬山',
-                description: '一座陡峭的山峰，山上住着许多凶悍的猛兽。<br>这里的生物都异常凶残，但资源也极其丰富。<br>听说还有一只特别的怪物在这里活动...',
-                encounters: ['野生犬兽', '酷酷的狗'],
+                description: '一座陡峭的山峰，山上住着许多凶悍的猛兽。这里的生物都异常凶残，但资源也极其丰富。',
+                encounters: ['路边一条', '酷酷的狗'],
                 resources: ['meat', 'stone', 'iron'],
-                story: '在山顶，你遇见了一只体型巨大、毛发飘逸的酷酷的狗。<br>它似乎在守护什么东西...'
+                unlockCondition: { type: 'level', value: 4 },
+                unlockHint: '需要Lv.4',
+                storyOnEnter: '山顶传来异样的嚎叫，有强大的生物在此守护着什么...'
             },
             {
                 id: 'company',
                 name: '🏢 恶魔公司',
-                description: '一座诡异的现代建筑矗立在荒野中。<br>这是皱皮大王的据点，充满了邪恶的气息。<br>这里汇集了许多强大的怪物...',
-                encounters: ['公司员工', '妖怪主管', '邪灵保安'],
+                description: '一座诡异的现代建筑矗立在荒野中。这是皱皮大王的据点之一，充满了邪恶的气息。',
+                encounters: ['公司员工', '恶魔', '刘伟'],
                 resources: ['iron', 'stone', 'potion'],
-                story: '你潜入了恶魔公司。在档案室中发现了皱皮大王的计划。<br>它计划进一步扩张其势力范围，摧毁更多的势力...'
+                unlockCondition: { type: 'defeated', value: '酷酷的狗' },
+                unlockHint: '需要击败酷酷的狗',
+                storyOnEnter: '你潜入了恶魔公司总部，发现了皱皮大王扩张计划的详细档案...'
             },
             {
                 id: 'cave',
-                name: '⛰️ 深渊洞窟',
-                description: '一个深不见底的黑暗洞窟。<br>里面传来低沉的吼声和奇异的气味。<br>据说皱皮大王的一些手下在这里修行...',
-                encounters: ['洞窟蜘蛛', '地穴恶魔'],
+                name: '⛰️ nga洞窟',
+                description: '一个深不见底的黑暗洞窟。里面传来低沉的吼声和奇异的气味。据说皱皮大王的精锐部队在这里修行...',
+                encounters: ['猴子', '米默'],
                 resources: ['iron', 'herb', 'stone'],
-                story: '在洞窟深处，你找到了一个被困的生灵。<br>它告诉你皱皮大王的弱点信息...'
+                unlockCondition: { type: 'level', value: 5 },
+                unlockHint: '需要Lv.5',
+                storyOnEnter: '洞窟深处传来古老的低语，似乎在诉说着什么秘密...'
             },
             {
                 id: 'temple',
                 name: '🏯 废弃神庙',
-                description: '一座古老的神庙被岁月侵蚀。<br>这里曾经是人类求神的地方，现在沦为了妖怪的巢穴。<br>但也许还能找到一些珍贵的遗物...',
-                encounters: ['神庙守卫', '堕落僧侣'],
+                description: '一座古老的神庙被岁月侵蚀。这里曾经是人类求神的地方，现在沦为了妖怪的巢穴。',
+                encounters: ['档卫兵', '麻辣仙人'],
                 resources: ['potion', 'herb', 'wood'],
-                story: '在神庙的地下室，你发现了一本记载仙家军历史的古籍。<br>其中提到了一个能够削弱皱皮大王的方法...'
+                unlockCondition: { type: 'power', value: 150 },
+                unlockHint: '需要总战力≥150',
+                storyOnEnter: '在神庙的祭坛上，你发现了削弱皱皮大王的古老仪式...'
             },
             {
                 id: 'fortress',
                 name: '👑 永夜堡垒',
-                description: '皱皮大王的最终据点！<br>这座堡垒充满了绝望的黑暗力量。<br>只有做好充足准备的人才能在这里活下来...',
+                description: '皱皮大王的最终据点！这座堡垒充满了绝望的黑暗力量。只有做好充足准备的人才能在这里活下来...',
                 encounters: ['皱皮大王'],
                 resources: [],
-                story: '这就是复仇的终点。在这里，你将面对你最强大的敌人...'
+                unlockCondition: { type: 'power', value: 200 },
+                unlockHint: '需要总战力≥200',
+                storyOnEnter: '这就是复仇的终点...你的宿敌就在前方！'
             }
         ];
 
@@ -985,39 +1360,23 @@
             }
         ];
 
-        const enemies = {
-            '野狼': { hp: 40, attack: 8, defense: 3, reward: ['food', 'wood'], location: 'ruins' },
-            '变异野狼': { hp: 60, attack: 12, defense: 5, reward: ['meat', 'wood', 'herb'], location: 'forest' },
-            '妖树精灵': { hp: 70, attack: 10, defense: 8, reward: ['herb', 'potion'], location: 'forest' },
-            '废墟幽灵': { hp: 50, attack: 14, defense: 4, reward: ['herb', 'stone'], location: 'ruins' },
-            '沼泽毒蛙': { hp: 55, attack: 11, defense: 6, reward: ['water', 'herb'], location: 'swamp' },
-            '泥浆怪物': { hp: 80, attack: 13, defense: 7, reward: ['water', 'stone', 'herb'], location: 'swamp' },
-            '野生犬兽': { hp: 75, attack: 14, defense: 6, reward: ['meat', 'stone'], location: 'cooldog' },
-            '酷酷的狗': { hp: 150, attack: 25, defense: 15, reward: ['meat', 'iron', 'soul_fragment'], location: 'cooldog', boss: true },
-            '公司员工': { hp: 60, attack: 12, defense: 6, reward: ['iron', 'stone', 'potion'], location: 'company' },
-            '妖怪主管': { hp: 100, attack: 18, defense: 10, reward: ['iron', 'soul_fragment'], location: 'company' },
-            '邪灵保安': { hp: 80, attack: 15, defense: 8, reward: ['stone', 'potion'], location: 'company' },
-            '洞窟蜘蛛': { hp: 75, attack: 16, defense: 6, reward: ['iron', 'herb'], location: 'cave' },
-            '地穴恶魔': { hp: 120, attack: 20, defense: 12, reward: ['iron', 'soul_fragment', 'potion'], location: 'cave' },
-            '神庙守卫': { hp: 90, attack: 17, defense: 10, reward: ['potion', 'herb', 'soul_fragment'], location: 'temple' },
-            '堕落僧侣': { hp: 85, attack: 14, defense: 9, reward: ['herb', 'potion'], location: 'temple' }
-        };
-
         const bossEnemy = {
             name: '皱皮大王',
-            hp: 500,
-            maxHp: 500,
+            hp: 1500,
+            maxHp: 1500,
             attack: 35,
             defense: 25,
-            specialAttack: true
+            specialAttack: true,
+            exp: 1000
         };
 
-        // 游戏状态
         let gameState = {
             selectedCharacter: null,
             currentLocation: 'ruins',
             player: {
                 name: '',
+                level: 1,
+                exp: 0,
                 hp: 100,
                 maxHp: 100,
                 hunger: 100,
@@ -1035,8 +1394,8 @@
                     endurance: 0,
                     agility: 0
                 },
-                attackBoost: 0,  // 神盾用：受伤时攻击力提升
-                isZhenJi: false  // 盘圣用：是否触发震机
+                attackBoost: 0,
+                isZhenJi: false
             },
             inventory: {},
             currentEnemy: null,
@@ -1044,23 +1403,27 @@
             battleEnded: false,
             turnsAlived: 0,
             bossDefeated: false,
+            unlockedLocations: new Set(['ruins']),
             visitedLocations: new Set(),
+            defeatedBosses: new Set(),
             storyProgress: 0,
-            savedAlly: false,
-            defeatedCoolDog: false
+            savedAlly: false
         };
 
         let attributePoints = 10;
 
-        // 初始化角色选择
         function initCharacterSelection() {
+            activateAudioOnUserInteraction();
             const characterList = document.getElementById('character-list');
             characterList.innerHTML = '';
-            
             characters.forEach(char => {
                 const card = document.createElement('div');
                 card.className = 'character-card';
-                card.onclick = () => selectCharacter(char.id);
+                card.onclick = () => {
+                    activateAudioOnUserInteraction();
+                    playClickSound();
+                    selectCharacter(char.id);
+                };
                 card.id = `char-${char.id}`;
                 card.innerHTML = `
                     <div>
@@ -1078,69 +1441,60 @@
                 `;
                 characterList.appendChild(card);
             });
+            playMusic('main');
         }
 
-        // 选择角色
         function selectCharacter(charId) {
             document.querySelectorAll('.character-card').forEach(card => {
                 card.classList.remove('selected');
             });
             document.getElementById(`char-${charId}`).classList.add('selected');
-            
             gameState.selectedCharacter = characters.find(c => c.id === charId);
             document.getElementById('select-char-btn').disabled = false;
         }
 
-        // 开始属性加点
         function startAttributeAllocation() {
             if (!gameState.selectedCharacter) return;
-            
-            // ✅ 陈雨欣特殊处理
+            activateAudioOnUserInteraction();
+            playClickSound();
             if (gameState.selectedCharacter.id === 'chenyuxin') {
                 document.getElementById('chenyuxin-modal').classList.add('active');
                 return;
             }
-            
             document.getElementById('intro-screen').classList.remove('active');
             document.getElementById('attribute-screen').classList.add('active');
-            
             initAttributePanel();
         }
 
-        // ✅ 接受告白
         function acceptConfession() {
+            activateAudioOnUserInteraction();
+            playClickSound();
             document.getElementById('chenyuxin-modal').classList.remove('active');
             document.getElementById('intro-screen').classList.remove('active');
             document.getElementById('attribute-screen').classList.add('active');
-            
             initAttributePanel();
         }
 
-        // ✅ 拒绝告白 - 弹窗瞬移
         function rejectConfession() {
+            activateAudioOnUserInteraction();
+            playClickSound();
             const modal = document.getElementById('chenyuxin-modal');
             const rejectBtn = document.getElementById('reject-btn');
-            
-            // 生成随机位置
             const randomX = Math.random() * (window.innerWidth - 100);
             const randomY = Math.random() * (window.innerHeight - 50);
-            
             rejectBtn.style.position = 'fixed';
             rejectBtn.style.left = randomX + 'px';
             rejectBtn.style.top = randomY + 'px';
             rejectBtn.style.zIndex = '1001';
         }
 
-        // 初始化属性面板
         function initAttributePanel() {
             const panel = document.getElementById('attribute-panel');
             const attrs = ['strength', '力量 (攻击+2)', 'vitality', '体质 (生命+10)', 'endurance', '耐力 (防御+2)', 'agility', '敏捷 (闪避+2%)'];
-            
             panel.innerHTML = '';
             for (let i = 0; i < attrs.length; i += 2) {
                 const attrKey = attrs[i];
                 const attrName = attrs[i + 1];
-                
                 const item = document.createElement('div');
                 item.className = 'attribute-item';
                 item.innerHTML = `
@@ -1153,42 +1507,41 @@
                 `;
                 panel.appendChild(item);
             }
-            
             updateAttributeDisplay();
         }
 
-        // 增加属性
         function increaseAttr(attr) {
             if (attributePoints > 0) {
+                activateAudioOnUserInteraction();
+                playClickSound();
                 gameState.player.attributes[attr]++;
                 attributePoints--;
                 updateAttributeDisplay();
             }
         }
 
-        // 减少属性
         function decreaseAttr(attr) {
             if (gameState.player.attributes[attr] > 0) {
+                activateAudioOnUserInteraction();
+                playClickSound();
                 gameState.player.attributes[attr]--;
                 attributePoints++;
                 updateAttributeDisplay();
             }
         }
 
-        // 更新属性显示
         function updateAttributeDisplay() {
             document.getElementById('points-remaining').textContent = attributePoints;
-            
             for (let attr in gameState.player.attributes) {
                 document.getElementById(`attr-${attr}`).textContent = gameState.player.attributes[attr];
             }
         }
 
-        // 开始游戏
         function startGame() {
+            activateAudioOnUserInteraction();
+            playClickSound();
             const char = gameState.selectedCharacter;
             const attrs = gameState.player.attributes;
-            
             gameState.player.name = char.name;
             gameState.player.maxHp = char.baseStats.hp + attrs.vitality * 10;
             gameState.player.hp = gameState.player.maxHp;
@@ -1196,7 +1549,6 @@
             gameState.player.baseDefense = char.baseStats.defense + attrs.endurance * 2;
             gameState.player.ability = char.ability;
             gameState.player.agility = attrs.agility * 2;
-            
             gameState.inventory = {
                 food: 3,
                 water: 3,
@@ -1204,95 +1556,178 @@
                 wood: 5,
                 stone: 2
             };
-            
             document.getElementById('attribute-screen').classList.remove('active');
             document.getElementById('game-screen').classList.add('active');
-            
+            playMusic('normal');
             initLocationButtons();
             updateStatusBar();
             updateCharacterDisplay();
+            updateProgressDisplay();
             addGameLog('游戏开始！你在仙家军的遗迹中醒来...');
-            addGameLog('你需要变强，找到皱皮大王复仇！');
+            addGameLog('<div class="hint-box">💡 新手指引：先在遗迹探索获取资源，击败敌人获得经验升级，达到Lv.2后可解锁原老院！</div>');
         }
 
-        // 初始化地点按钮
+        function checkLocationUnlock(location) {
+            const condition = location.unlockCondition;
+            if (condition.type === 'start') return true;
+            if (condition.type === 'level') return gameState.player.level >= condition.value;
+            if (condition.type === 'power') {
+                const totalPower = gameState.player.baseAttack + gameState.player.bonusAttack + gameState.player.baseDefense + gameState.player.bonusDefense;
+                return totalPower >= condition.value;
+            }
+            if (condition.type === 'defeated') return gameState.defeatedBosses.has(condition.value);
+            return false;
+        }
+
         function initLocationButtons() {
             const nav = document.getElementById('location-nav');
             nav.innerHTML = '';
-            
             locations.forEach(loc => {
+                const isUnlocked = checkLocationUnlock(loc);
                 const btn = document.createElement('button');
                 btn.className = 'location-btn';
-                if (loc.id === gameState.currentLocation) {
+                if (!isUnlocked) {
+                    btn.classList.add('locked');
+                    btn.title = loc.unlockHint;
+                    btn.disabled = true;
+                } else if (loc.id === gameState.currentLocation) {
                     btn.classList.add('active');
                 }
-                btn.textContent = loc.name;
-                btn.onclick = () => travelToLocation(loc.id);
+                btn.innerHTML = `
+                    ${loc.name}
+                    ${!isUnlocked ? '<div class="unlock-hint">' + loc.unlockHint + '</div>' : ''}
+                `;
+                btn.onclick = () => {
+                    if (isUnlocked) {
+                        activateAudioOnUserInteraction();
+                        playClickSound();
+                        travelToLocation(loc.id);
+                    }
+                };
                 nav.appendChild(btn);
             });
         }
 
-        // 旅行到地点
+        function updateProgressDisplay() {
+            const level = gameState.player.level;
+            const exp = gameState.player.exp;
+            const nextLevelExp = levelExpTable[level] || 99999;
+            const expPercent = (exp / nextLevelExp * 100).toFixed(1);
+            document.getElementById('level-display').textContent = `Lv.${level}`;
+            document.getElementById('exp-fill').style.width = `${expPercent}%`;
+            document.getElementById('exp-text').textContent = `${exp}/${nextLevelExp}`;
+            document.getElementById('unlock-progress').textContent = `${gameState.unlockedLocations.size}/8 地图`;
+        }
+
+        function gainExp(amount) {
+            gameState.player.exp += amount;
+            const level = gameState.player.level;
+            const nextLevelExp = levelExpTable[level];
+            if (nextLevelExp && gameState.player.exp >= nextLevelExp) {
+                levelUp();
+            }
+            updateProgressDisplay();
+        }
+
+        function levelUp() {
+            gameState.player.level++;
+            gameState.player.exp = 0;
+            const hpBonus = 10;
+            const attackBonus = 2;
+            const defenseBonus = 1;
+            gameState.player.maxHp += hpBonus;
+            gameState.player.hp = gameState.player.maxHp;
+            gameState.player.baseAttack += attackBonus;
+            gameState.player.baseDefense += defenseBonus;
+            addGameLog(`<div class="heal" style="font-size: 1.2em; padding: 10px; background: rgba(76, 175, 80, 0.2); border-radius: 8px; margin: 10px 0;">
+                🎊 升级了！等级提升至 Lv.${gameState.player.level}！<br>
+                生命上限+${hpBonus}，攻击力+${attackBonus}，防御力+${defenseBonus}
+            </div>`);
+            checkAndUnlockLocations();
+            updateProgressDisplay();
+            updateStatusBar();
+        }
+
+        function checkAndUnlockLocations() {
+            let newUnlocks = [];
+            locations.forEach(loc => {
+                if (!gameState.unlockedLocations.has(loc.id) && checkLocationUnlock(loc)) {
+                    gameState.unlockedLocations.add(loc.id);
+                    newUnlocks.push(loc);
+                }
+            });
+            if (newUnlocks.length > 0) {
+                newUnlocks.forEach(loc => {
+                    showUnlockNotification(loc);
+                });
+                initLocationButtons();
+            }
+        }
+
+        function showUnlockNotification(location) {
+            const modal = document.getElementById('unlock-modal');
+            const text = document.getElementById('unlock-text');
+            text.innerHTML = `
+                恭喜！你解锁了新地图：<br>
+                <span style="color: #ffd54f; font-size: 1.3em;">${location.name}</span><br><br>
+                <span style="color: #64b5f6;">${location.storyOnEnter}</span>
+            `;
+            modal.classList.add('active');
+        }
+
+        function closeUnlockModal() {
+            playClickSound();
+            document.getElementById('unlock-modal').classList.remove('active');
+        }
+
         function travelToLocation(locationId) {
+            if (!gameState.unlockedLocations.has(locationId)) {
+                addGameLog('⚠️ 该地图尚未解锁！');
+                return;
+            }
             gameState.currentLocation = locationId;
             gameState.turnsAlived++;
             gameState.visitedLocations.add(locationId);
-            
             const location = locations.find(l => l.id === locationId);
             const content = document.getElementById('game-content');
-            
             content.innerHTML = '';
-            
             addGameLog(`📍 你来到了 ${location.name}`);
             addGameLog(location.description);
-            
-            if (locationId === 'company' && !gameState.savedAlly) {
-                addGameLog(`<div style="background: rgba(50, 50, 80, 0.95); padding: 15px; border-radius: 8px; border-left: 4px solid #ffd54f;">
-                    <div style="font-size: 1.2em; color: #ffd54f; margin-bottom: 10px;">⚠️ 发现异状</div>
-                    ${location.story}
+            if (!gameState.visitedLocations.has(locationId + '_story')) {
+                addGameLog(`<div style="background: rgba(100, 181, 246, 0.1); padding: 15px; border-left: 4px solid #64b5f6; border-radius: 5px; margin: 10px 0;">
+                    ${location.storyOnEnter}
                 </div>`);
-                gameState.savedAlly = true;
+                gameState.visitedLocations.add(locationId + '_story');
             }
-            
             gameState.player.hunger -= 3;
             gameState.player.thirst -= 5;
-            
             updateStatusBar();
             updateLocationDisplay();
             initLocationButtons();
             checkSurvival();
         }
 
-        // 更新位置显示
         function updateLocationDisplay() {
             const location = locations.find(l => l.id === gameState.currentLocation);
             document.getElementById('location-display').textContent = location.name;
         }
 
-        // 更新角色显示
         function updateCharacterDisplay() {
             document.getElementById('character-name').textContent = gameState.player.name;
         }
 
-        // 更新状态栏
         function updateStatusBar() {
             const p = gameState.player;
             document.getElementById('hp-display').textContent = `${Math.max(0, p.hp)}/${p.maxHp}`;
             document.getElementById('hunger-display').textContent = `${Math.max(0, p.hunger)}/${p.maxHunger}`;
             document.getElementById('thirst-display').textContent = `${Math.max(0, p.thirst)}/${p.maxThirst}`;
-            
             const totalAttack = p.baseAttack + p.bonusAttack + p.attackBoost;
             const totalDefense = p.baseDefense + p.bonusDefense;
-            
             document.getElementById('attack-display').textContent = totalAttack;
             document.getElementById('defense-display').textContent = totalDefense;
-            
-            if (p.hp <= 0) {
-                gameOver(false);
-            }
+            if (p.hp <= 0) gameOver(false);
         }
 
-        // 添加游戏日志
         function addGameLog(message) {
             const content = document.getElementById('game-content');
             const p = document.createElement('p');
@@ -1302,25 +1737,19 @@
             content.scrollTop = content.scrollHeight;
         }
 
-        // 探索
         function explore() {
+            activateAudioOnUserInteraction();
+            playClickSound();
             gameState.turnsAlived++;
-            
             gameState.player.hunger -= 5;
             gameState.player.thirst -= 8;
-            
             const location = locations.find(l => l.id === gameState.currentLocation);
             const rand = Math.random();
-            
             if (rand < 0.4) {
                 const resources = location.resources;
                 const foundResource = resources[Math.floor(Math.random() * resources.length)];
                 let amount = Math.floor(Math.random() * 3) + 1;
-                
-                if (gameState.player.name === '河北小杨') {
-                    amount = Math.floor(amount * 1.5);
-                }
-                
+                if (gameState.player.name === '河北小杨') amount = Math.floor(amount * 1.5);
                 addToInventory(foundResource, amount);
                 addGameLog(`🎉 探索成功！你发现了 ${items[foundResource].name} x${amount}`);
             } else if (rand < 0.7) {
@@ -1328,24 +1757,21 @@
             } else {
                 addGameLog('你在 ' + location.name + ' 中搜索，但什么都没找到...');
             }
-            
             updateStatusBar();
             checkSurvival();
         }
 
-        // 显示背包
         function showInventory() {
+            activateAudioOnUserInteraction();
+            playClickSound();
             document.getElementById('game-screen').classList.remove('active');
             document.getElementById('inventory-screen').classList.add('active');
-            
             const inventoryList = document.getElementById('inventory-list');
             inventoryList.innerHTML = '';
-            
             if (Object.keys(gameState.inventory).length === 0) {
                 inventoryList.innerHTML = '<p style="text-align: center; color: #bbb;">背包是空的</p>';
                 return;
             }
-            
             for (let itemId in gameState.inventory) {
                 if (gameState.inventory[itemId] > 0) {
                     const item = items[itemId];
@@ -1362,50 +1788,37 @@
             }
         }
 
-        // 使用物品
         function useItem(itemId) {
-            if (!gameState.inventory[itemId] || gameState.inventory[itemId] <= 0) {
-                return;
-            }
-            
+            if (!gameState.inventory[itemId] || gameState.inventory[itemId] <= 0) return;
+            activateAudioOnUserInteraction();
+            playClickSound();
             const item = items[itemId];
-            
             if (item.craftMaterial || item.special) {
                 addGameLog(`${item.name} 不能直接使用`);
                 return;
             }
-            
             let used = false;
             let message = '';
-            
             if (item.hp) {
                 let healAmount = item.hp;
-                if (gameState.player.name === '陈雨欣') {
-                    healAmount = Math.floor(healAmount * 1.5);
-                }
-                // ✅ 大唐丸子特殊能力
-                if (gameState.player.name === '大唐丸子' && itemId === 'meat') {
-                    healAmount = Math.floor(healAmount * 1.4);
-                }
+                if (gameState.player.name === '陈雨欣') healAmount = Math.floor(healAmount * 1.5);
+                if (gameState.player.name === '大唐丸子' && itemId === 'meat') healAmount = Math.floor(healAmount * 1.4);
                 gameState.player.hp = Math.min(gameState.player.maxHp, gameState.player.hp + healAmount);
                 message = `使用了 ${item.name}，恢复了 ${healAmount} 点生命值`;
                 used = true;
             }
-            
             if (item.hunger && item.hunger > 0) {
                 gameState.player.hunger = Math.min(gameState.player.maxHunger, gameState.player.hunger + item.hunger);
                 if (message) message += '，';
                 message += `恢复了${item.hunger}饱食度`;
                 used = true;
             }
-            
             if (item.thirst && item.thirst > 0) {
                 gameState.player.thirst = Math.min(gameState.player.maxThirst, gameState.player.thirst + item.thirst);
                 if (message) message += '，';
                 message += `恢复了${item.thirst}饥渴度`;
                 used = true;
             }
-            
             if (used) {
                 gameState.inventory[itemId]--;
                 addGameLog(`✅ ${message}`);
@@ -1414,26 +1827,23 @@
             }
         }
 
-        // 显示合成界面
         function showCraft() {
+            activateAudioOnUserInteraction();
+            playClickSound();
             document.getElementById('game-screen').classList.remove('active');
             document.getElementById('craft-screen').classList.add('active');
-            
             const recipesList = document.getElementById('craft-recipes');
             recipesList.innerHTML = '';
-            
             recipes.forEach((recipe, index) => {
                 const canCraft = checkCanCraft(recipe);
                 const div = document.createElement('div');
                 div.className = 'recipe';
-                
                 let materialsText = '';
                 for (let mat in recipe.materials) {
                     const need = recipe.materials[mat];
                     const have = gameState.inventory[mat] || 0;
                     materialsText += `${items[mat].name}: ${have}/${need} `;
                 }
-                
                 div.innerHTML = `
                     <div class="recipe-info">
                         <div class="recipe-name">${recipe.name}</div>
@@ -1450,28 +1860,19 @@
             });
         }
 
-        // 检查能否合成
         function checkCanCraft(recipe) {
             for (let mat in recipe.materials) {
-                if (!gameState.inventory[mat] || gameState.inventory[mat] < recipe.materials[mat]) {
-                    return false;
-                }
+                if (!gameState.inventory[mat] || gameState.inventory[mat] < recipe.materials[mat]) return false;
             }
             return true;
         }
 
-        // 合成物品
         function craft(recipeIndex) {
+            activateAudioOnUserInteraction();
+            playClickSound();
             const recipe = recipes[recipeIndex];
-            
-            if (!checkCanCraft(recipe)) {
-                return;
-            }
-            
-            for (let mat in recipe.materials) {
-                gameState.inventory[mat] -= recipe.materials[mat];
-            }
-            
+            if (!checkCanCraft(recipe)) return;
+            for (let mat in recipe.materials) gameState.inventory[mat] -= recipe.materials[mat];
             if (recipe.result.item) {
                 addToInventory(recipe.result.item, 1);
                 addGameLog(`🔨 成功合成了 ${items[recipe.result.item].name}！`);
@@ -1485,73 +1886,40 @@
                     addGameLog(`🔨 成功合成了 ${recipe.name}！防御力 +${recipe.result.defense}`);
                 }
             }
-            
+            gainExp(20);
             updateStatusBar();
             showCraft();
         }
 
-        // 休息
         function rest() {
+            activateAudioOnUserInteraction();
+            playClickSound();
             gameState.turnsAlived++;
-            
             const healAmount = Math.floor(gameState.player.maxHp * 0.3);
             gameState.player.hp = Math.min(gameState.player.maxHp, gameState.player.hp + healAmount);
             gameState.player.hunger -= 10;
             gameState.player.thirst -= 10;
-            
             addGameLog(`😴 你在 ${locations.find(l => l.id === gameState.currentLocation).name} 休息了，恢复了 ${healAmount} 点生命值`);
             updateStatusBar();
             checkSurvival();
         }
 
-        // 寻找Boss
-        function findBoss() {
-            if (gameState.bossDefeated) {
-                addGameLog('皱皮大王已经被你消灭了！');
-                return;
-            }
-            
-            const totalPower = gameState.player.baseAttack + gameState.player.bonusAttack + 
-                              gameState.player.baseDefense + gameState.player.bonusDefense;
-            
-            if (totalPower < 50) {
-                addGameLog('⚠️ 你感觉自己还不够强大，需要更多的装备和准备...');
-                addGameLog('💡 提示: 需要总战力达到50以上！');
-                return;
-            }
-            
-            if (gameState.player.hp < gameState.player.maxHp * 0.5) {
-                addGameLog('⚠️ 你的状态不太好，应该先治疗一下...');
-                return;
-            }
-            
-            addGameLog('你决定向永夜堡垒前进...');
-            addGameLog('天空变得越来越黑，邪恶的力量笼罩着大地...');
-            addGameLog('你找到了通往永夜堡垒的入口！');
-            setTimeout(() => {
-                startBossBattle();
-            }, 1000);
-        }
-
-        // 开始普通战斗
         function startBattle(location) {
             const enemyNames = location.encounters;
             const enemyName = enemyNames[Math.floor(Math.random() * enemyNames.length)];
             const enemy = JSON.parse(JSON.stringify(enemies[enemyName]));
             enemy.maxHp = enemy.hp;
+            enemy.name = enemyName;
             gameState.currentEnemy = enemy;
             gameState.inBattle = true;
             gameState.battleEnded = false;
             gameState.player.isZhenJi = false;
-            
             document.getElementById('game-screen').classList.remove('active');
             document.getElementById('battle-screen').classList.add('active');
-            
+            playMusic('fight');
             document.getElementById('enemy-name').textContent = enemyName;
             document.getElementById('enemy-hp').textContent = `${enemy.hp}/${enemy.maxHp}`;
-            
             const battleLog = document.getElementById('battle-log');
-            
             if (enemyName === '酷酷的狗') {
                 battleLog.innerHTML = `
                     <p>你在酷犬山的山顶遇到了一只体型巨大的怪物！</p>
@@ -1561,25 +1929,22 @@
             } else {
                 battleLog.innerHTML = `<p>在 ${location.name} 中，你遭遇了 ${enemyName}！</p>`;
             }
-
             document.getElementById('attack-btn').disabled = false;
             document.getElementById('heal-btn').disabled = false;
             document.getElementById('flee-btn').disabled = false;
         }
 
-        // 开始Boss战斗
         function startBossBattle() {
             gameState.currentEnemy = JSON.parse(JSON.stringify(bossEnemy));
+            gameState.currentEnemy.name = '皱皮大王';
             gameState.inBattle = true;
             gameState.battleEnded = false;
             gameState.player.isZhenJi = false;
-            
             document.getElementById('game-screen').classList.remove('active');
             document.getElementById('battle-screen').classList.add('active');
-            
+            playMusic('fight');
             document.getElementById('enemy-name').textContent = bossEnemy.name;
             document.getElementById('enemy-hp').textContent = `${bossEnemy.hp}/${bossEnemy.maxHp}`;
-            
             const battleLog = document.getElementById('battle-log');
             battleLog.innerHTML = `
                 <p>你踏入了永夜堡垒，刺骨的寒风迎面吹来。</p>
@@ -1587,96 +1952,65 @@
                 <p>它的身躯庞大无比，充满了邪恶的力量。无数灵魂在它周围哭喊。</p>
                 <p class="damage" style="color: #ff1744;">皱皮大王发出了震天的怒吼："又有一个凡人敢来挑战我？你们都会沦为我的养分！"</p>
             `;
-
             document.getElementById('attack-btn').disabled = false;
             document.getElementById('heal-btn').disabled = false;
             document.getElementById('flee-btn').disabled = false;
         }
 
-        // 攻击
         function attack() {
             if (!gameState.inBattle || !gameState.currentEnemy || gameState.battleEnded) return;
-            
+            activateAudioOnUserInteraction();
+            playClickSound();
             const enemy = gameState.currentEnemy;
             const player = gameState.player;
             const battleLog = document.getElementById('battle-log');
-            
             let playerDamage = player.baseAttack + player.bonusAttack + player.attackBoost - enemy.defense;
             playerDamage = Math.max(1, playerDamage);
-            
-            // 诸天未来仙帝特殊能力
-            if (player.name === '诸天未来仙帝') {
-                playerDamage = Math.floor(playerDamage * 1.2);
-            }
-            
-            // ✅ 盘圣特殊能力：震机
-            let isZhenJi = false;
+            if (player.name === '诸天未来仙帝') playerDamage = Math.floor(playerDamage * 1.2);
             if (player.name === '盘圣' && Math.random() < 0.35) {
-                isZhenJi = true;
                 playerDamage *= 2;
                 battleLog.innerHTML += `<p class="damage">⚡ 触发"震机"！本轮伤害提高100%，造成 ${playerDamage} 点伤害！</p>`;
             } else if (player.name === '因提瓦特·荧') {
                 playerDamage = Math.floor(playerDamage * 1.3);
+                battleLog.innerHTML += `<p class="damage">🌟 元素融合！造成 ${playerDamage} 点伤害</p>`;
             } else if (player.name === '鬼姥' && Math.random() < 0.3) {
                 playerDamage *= 2;
                 battleLog.innerHTML += `<p class="damage">💀 致命一击！造成 ${playerDamage} 点伤害！</p>`;
-            } else if (player.name !== '盘圣' && player.name !== '因提瓦特·荧' && player.name !== '鬼姥') {
+            } else {
                 battleLog.innerHTML += `<p class="damage">⚔️ 你攻击了 ${enemy.name}，造成 ${playerDamage} 点伤害</p>`;
             }
-            
-            if (player.name !== '盘圣' && player.name !== '鬼姥' && player.name !== '因提瓦特·荧') {
-                battleLog.innerHTML += `<p class="damage">⚔️ 你攻击了 ${enemy.name}，造成 ${playerDamage} 点伤害</p>`;
-            }
-            
             enemy.hp -= playerDamage;
-            
             if (enemy.hp <= 0) {
                 enemy.hp = 0;
                 gameState.battleEnded = true;
-                
                 battleLog.innerHTML += `<p class="heal">🎉 你击败了 ${enemy.name}！</p>`;
-                
+                const expGain = enemy.exp || 50;
+                gainExp(expGain);
+                battleLog.innerHTML += `<p class="info">📈 获得 ${expGain} 经验值</p>`;
                 document.getElementById('attack-btn').disabled = true;
                 document.getElementById('heal-btn').disabled = true;
                 document.getElementById('flee-btn').disabled = true;
-                
                 if (enemy.name === '皱皮大王') {
                     gameState.bossDefeated = true;
-                    setTimeout(() => {
-                        gameOver(true);
-                    }, 2000);
-                } else if (enemy.name === '酷酷的狗') {
-                    gameState.defeatedCoolDog = true;
-                    enemy.reward.forEach(itemId => {
-                        const amount = Math.floor(Math.random() * 2) + 1;
-                        addToInventory(itemId, amount);
-                        battleLog.innerHTML += `<p class="heal">获得 ${items[itemId].name} x${amount}</p>`;
-                    });
-                    battleLog.innerHTML += `<p class="heal">💎 酷酷的狗掉落了宝贵的灵魂碎片！</p>`;
-                    setTimeout(() => {
-                        endBattle();
-                    }, 2000);
+                    setTimeout(() => gameOver(true), 2000);
                 } else {
+                    if (enemy.boss) {
+                        gameState.defeatedBosses.add(enemy.name);
+                        battleLog.innerHTML += `<p class="heal">⭐ 击败了强大的Boss！</p>`;
+                    }
                     enemy.reward.forEach(itemId => {
                         const amount = Math.floor(Math.random() * 2) + 1;
                         addToInventory(itemId, amount);
                         battleLog.innerHTML += `<p class="heal">获得 ${items[itemId].name} x${amount}</p>`;
                     });
-                    
-                    setTimeout(() => {
-                        endBattle();
-                    }, 2000);
+                    setTimeout(() => endBattle(), 2000);
                 }
-                
                 document.getElementById('enemy-hp').textContent = `0/${enemy.maxHp}`;
                 battleLog.scrollTop = battleLog.scrollHeight;
                 return;
             }
-            
-            // 敌人反击
             let enemyDamage = enemy.attack - (player.baseDefense + player.bonusDefense);
             enemyDamage = Math.max(1, enemyDamage);
-            
             if (enemy.name === '皱皮大王' && Math.random() < 0.3) {
                 enemyDamage = Math.floor(enemyDamage * 2);
                 battleLog.innerHTML += `<p class="damage">🌑 皱皮大王使用了邪恶能量，造成 ${enemyDamage} 点伤害！</p>`;
@@ -1684,67 +2018,46 @@
                 enemyDamage = Math.floor(enemyDamage * 1.8);
                 battleLog.innerHTML += `<p class="damage">🐕 酷酷的狗展现出了它的酷炫力量，造成 ${enemyDamage} 点伤害！</p>`;
             }
-            
-            if (player.name === '刘世鹏') {
-                enemyDamage = Math.floor(enemyDamage * 0.7);
-            }
-            
-            // ✅ 神盾特殊能力：受伤时攻击力提升
+            if (player.name === '刘世鹏') enemyDamage = Math.floor(enemyDamage * 0.7);
             const actualDamage = enemyDamage;
-            
             const dodgeChance = (player.agility || 0) / 100 + (player.name === '白狐' ? 0.25 : 0);
             if (Math.random() < dodgeChance) {
                 battleLog.innerHTML += `<p class="heal">✨ 你灵巧地闪避了攻击！</p>`;
             } else {
                 player.hp -= actualDamage;
-                
-                // ✅ 神盾受伤后攻击力提升
                 if (player.name === '神盾' && actualDamage > 0) {
                     const boost = Math.floor((player.baseAttack + player.bonusAttack) * 0.05);
                     player.attackBoost += boost;
                     battleLog.innerHTML += `<p class="info">🛡️ 受伤激发潜能！攻击力提升 ${boost} 点（总计：${player.baseAttack + player.bonusAttack + player.attackBoost}）</p>`;
                 }
-                
                 battleLog.innerHTML += `<p class="damage">💥 ${enemy.name} 反击，造成 ${actualDamage} 点伤害</p>`;
             }
-            
             document.getElementById('enemy-hp').textContent = `${enemy.hp}/${enemy.maxHp}`;
             updateStatusBar();
             battleLog.scrollTop = battleLog.scrollHeight;
-            
             if (player.hp <= 0) {
                 gameState.battleEnded = true;
                 document.getElementById('attack-btn').disabled = true;
                 document.getElementById('heal-btn').disabled = true;
                 document.getElementById('flee-btn').disabled = true;
-                setTimeout(() => {
-                    gameOver(false);
-                }, 1000);
+                setTimeout(() => gameOver(false), 1000);
             }
         }
 
-        // 战斗中使用治疗
         function useHealItem() {
             if (!gameState.inBattle || gameState.battleEnded) return;
-            
             const healItems = ['herb', 'potion', 'meat'];
-            let used = false;
-            
             for (let itemId of healItems) {
                 if (gameState.inventory[itemId] && gameState.inventory[itemId] > 0) {
+                    activateAudioOnUserInteraction();
+                    playClickSound();
                     useItem(itemId);
-                    
                     const battleLog = document.getElementById('battle-log');
                     battleLog.innerHTML += `<p class="heal">💊 使用了 ${items[itemId].name}</p>`;
-                    
                     const enemy = gameState.currentEnemy;
                     let enemyDamage = enemy.attack - (gameState.player.baseDefense + gameState.player.bonusDefense);
                     enemyDamage = Math.max(1, enemyDamage);
-                    
-                    if (gameState.player.name === '刘世鹏') {
-                        enemyDamage = Math.floor(enemyDamage * 0.7);
-                    }
-                    
+                    if (gameState.player.name === '刘世鹏') enemyDamage = Math.floor(enemyDamage * 0.7);
                     const dodgeChance = (gameState.player.agility || 0) / 100 + (gameState.player.name === '白狐' ? 0.25 : 0);
                     if (Math.random() < dodgeChance) {
                         battleLog.innerHTML += `<p class="heal">✨ 你闪避了攻击！</p>`;
@@ -1757,54 +2070,39 @@
                         }
                         battleLog.innerHTML += `<p class="damage">💥 ${enemy.name} 趁机攻击，造成 ${enemyDamage} 点伤害</p>`;
                     }
-                    
                     updateStatusBar();
                     battleLog.scrollTop = battleLog.scrollHeight;
-                    used = true;
-                    break;
+                    return;
                 }
             }
-            
-            if (!used) {
-                const battleLog = document.getElementById('battle-log');
-                battleLog.innerHTML += `<p>❌ 没有可用的治疗物品！</p>`;
-            }
+            const battleLog = document.getElementById('battle-log');
+            battleLog.innerHTML += `<p>❌ 没有可用的治疗物品！</p>`;
         }
 
-        // 逃跑
         function flee() {
             if (!gameState.inBattle || gameState.battleEnded) return;
-            
+            activateAudioOnUserInteraction();
+            playClickSound();
             if (gameState.currentEnemy.name === '皱皮大王') {
                 const battleLog = document.getElementById('battle-log');
                 battleLog.innerHTML += `<p class="damage">⚠️ 无法从皱皮大王面前逃跑！它的力量完全封锁了这个空间！</p>`;
                 return;
             }
-            
             if (Math.random() < 0.6) {
                 gameState.battleEnded = true;
                 const battleLog = document.getElementById('battle-log');
                 battleLog.innerHTML += `<p class="heal">🏃 你成功逃跑了！</p>`;
-                
                 document.getElementById('attack-btn').disabled = true;
                 document.getElementById('heal-btn').disabled = true;
                 document.getElementById('flee-btn').disabled = true;
-                
-                setTimeout(() => {
-                    endBattle();
-                }, 1000);
+                setTimeout(() => endBattle(), 1000);
             } else {
                 const battleLog = document.getElementById('battle-log');
                 battleLog.innerHTML += `<p class="damage">❌ 逃跑失败！</p>`;
-                
                 const enemy = gameState.currentEnemy;
                 let enemyDamage = enemy.attack - (gameState.player.baseDefense + gameState.player.bonusDefense);
                 enemyDamage = Math.max(1, enemyDamage);
-                
-                if (gameState.player.name === '刘世鹏') {
-                    enemyDamage = Math.floor(enemyDamage * 0.7);
-                }
-                
+                if (gameState.player.name === '刘世鹏') enemyDamage = Math.floor(enemyDamage * 0.7);
                 gameState.player.hp -= enemyDamage;
                 if (gameState.player.name === '神盾' && enemyDamage > 0) {
                     const boost = Math.floor((gameState.player.baseAttack + gameState.player.bonusAttack) * 0.05);
@@ -1816,58 +2114,49 @@
             }
         }
 
-        // 结束战斗
         function endBattle() {
             gameState.inBattle = false;
             gameState.currentEnemy = null;
             gameState.battleEnded = false;
-            gameState.player.attackBoost = 0;  // ✅ 重置神盾攻击加成
-            
+            gameState.player.attackBoost = 0;
             document.getElementById('battle-screen').classList.remove('active');
             document.getElementById('game-screen').classList.add('active');
-            
+            playMusic('normal');
             addGameLog('战斗结束，你继续前进...');
+            checkAndUnlockLocations();
         }
 
-        // 返回游戏
         function backToGame() {
+            activateAudioOnUserInteraction();
+            playClickSound();
             document.getElementById('inventory-screen').classList.remove('active');
             document.getElementById('craft-screen').classList.remove('active');
             document.getElementById('game-screen').classList.add('active');
         }
 
-        // 添加到背包
         function addToInventory(itemId, amount) {
-            if (!gameState.inventory[itemId]) {
-                gameState.inventory[itemId] = 0;
-            }
+            if (!gameState.inventory[itemId]) gameState.inventory[itemId] = 0;
             gameState.inventory[itemId] += amount;
         }
 
-        // 检查生存状态
         function checkSurvival() {
             if (gameState.player.hunger <= 0) {
                 gameState.player.hp -= 10;
                 addGameLog('⚠️ 你太饿了，损失了10点生命值！');
             }
-            
             if (gameState.player.thirst <= 0) {
                 gameState.player.hp -= 15;
                 addGameLog('⚠️ 你口渴难耐，损失了15点生命值！');
             }
-            
             updateStatusBar();
         }
 
-        // 游戏结束
         function gameOver(victory) {
             document.querySelectorAll('.game-screen').forEach(screen => {
                 screen.classList.remove('active');
             });
             document.getElementById('ending-screen').classList.add('active');
-            
             const endingContent = document.getElementById('ending-content');
-            
             if (victory) {
                 endingContent.innerHTML = `
                     <h2 class="victory">🎊 真·结局：复仇完成 🎊</h2>
@@ -1889,8 +2178,9 @@
                     <div style="background: rgba(76, 175, 80, 0.2); padding: 20px; border-radius: 8px; margin: 20px 0;">
                         <p style="color: #4caf50;"><strong>游戏统计</strong></p>
                         <p>角色: ${gameState.player.name}</p>
+                        <p>最终等级: Lv.${gameState.player.level}</p>
                         <p>存活回合: ${gameState.turnsAlived}</p>
-                        <p>访问地点: ${gameState.visitedLocations.size} 个</p>
+                        <p>探索地点: ${gameState.unlockedLocations.size}/8 个</p>
                         <p>最终攻击力: ${gameState.player.baseAttack + gameState.player.bonusAttack}</p>
                         <p>最终防御力: ${gameState.player.baseDefense + gameState.player.bonusDefense}</p>
                     </div>
@@ -1910,8 +2200,9 @@
                     <div style="background: rgba(244, 67, 54, 0.2); padding: 20px; border-radius: 8px; margin: 20px 0;">
                         <p style="color: #f44336;"><strong>游戏统计</strong></p>
                         <p>角色: ${gameState.player.name}</p>
+                        <p>达到等级: Lv.${gameState.player.level}</p>
                         <p>存活回合: ${gameState.turnsAlived}</p>
-                        <p>访问地点: ${gameState.visitedLocations.size} 个</p>
+                        <p>解锁地点: ${gameState.unlockedLocations.size}/8 个</p>
                         <p>最后位置: ${locations.find(l => l.id === gameState.currentLocation).name}</p>
                     </div>
                     <button class="btn btn-danger" onclick="location.reload()">重新开始</button>
@@ -1919,7 +2210,6 @@
             }
         }
 
-        // 页面加载时初始化
         window.onload = function() {
             initCharacterSelection();
         };
